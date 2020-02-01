@@ -44,6 +44,17 @@ public class StatefulGameObject : MonoBehaviour
         get { return this.GetComponentInParent<Room>(); }
     }
 
+    public GameObject GetStateObject(string state)
+    {
+        var match = this.States.FirstOrDefault(f => f.State.Equals(state.ToLower().Trim()));
+        if(match != null)
+        {
+            return match.ActiveObject;
+        }
+
+        return null;
+    }
+
     public string ActiveState { get; private set; }
     public GameObject ActiveObject { get; private set; }
 
