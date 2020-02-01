@@ -152,7 +152,6 @@ public class Inventory : MonoBehaviour
                         bool success = useItemAction();
                         if(success)
                         {
-
                             CurrentPickedObject.gameObject.SetActive(false);
                             CurrentPickedObject = null;
                         }
@@ -211,7 +210,11 @@ public class Inventory : MonoBehaviour
                             GuideText.Instance.SetText("You filled the watering can");
                             if(roomState.FillWateringCan())
                             {
-                               // this.CurrentPickedObject = hitobj
+                                var filledCan = item.GetComponentInParent<StatefulGameObject>().GetStateObject("Filled");
+                                if (filledCan != null)
+                                {
+                                     this.CurrentPickedObject = filledCan.GetComponentInChildren<InteractableObject>();
+                                }
                             }
                             return false;
                         };
