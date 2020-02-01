@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7506822187215455691}
   - component: {fileID: 7506822187215455689}
-  - component: {fileID: 7506822187215455688}
   m_Layer: 0
   m_Name: Camera_Room3
   m_TagString: Untagged
@@ -63,7 +62,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 23
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -75,14 +74,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &7506822187215455688
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7506822187215455690}
-  m_Enabled: 1
 --- !u!1 &7506822187232829704
 GameObject:
   m_ObjectHideFlags: 0
@@ -93,7 +84,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7506822187232829705}
   - component: {fileID: 7506822187232829703}
-  - component: {fileID: 7506822187232829702}
   m_Layer: 0
   m_Name: Camera_Room2
   m_TagString: Untagged
@@ -146,7 +136,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 23
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -158,14 +148,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &7506822187232829702
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7506822187232829704}
-  m_Enabled: 1
 --- !u!1 &7506822187261888375
 GameObject:
   m_ObjectHideFlags: 0
@@ -207,7 +189,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7506822187297971414}
   - component: {fileID: 7506822187297971412}
-  - component: {fileID: 7506822187297971415}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: Untagged
@@ -239,7 +220,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.43075827, g: 0.754717, b: 0.7388665, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -260,7 +241,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 23
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -272,14 +253,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &7506822187297971415
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7506822187297971417}
-  m_Enabled: 1
 --- !u!1 &7506822187611617665
 GameObject:
   m_ObjectHideFlags: 0
@@ -320,6 +293,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7506822187737229346}
+  - component: {fileID: 3209832730316318846}
   m_Layer: 0
   m_Name: Cameras
   m_TagString: Untagged
@@ -342,6 +316,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3209832730316318846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7506822187737229349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68e3ee0accba8d046a36a16c4425bdba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MainCam: {fileID: 7506822187977683795}
+  RoomCam:
+  - {fileID: 7506822188382576177}
+  - {fileID: 7506822188154106831}
+  - {fileID: 7506822187611617665}
+  - {fileID: 7506822187261888375}
 --- !u!1 &7506822187977683795
 GameObject:
   m_ObjectHideFlags: 0
@@ -383,7 +375,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7506822188058516659}
   - component: {fileID: 7506822188058516657}
-  - component: {fileID: 7506822188058516656}
   m_Layer: 0
   m_Name: Camera_Room4
   m_TagString: Untagged
@@ -436,7 +427,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 23
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -448,14 +439,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &7506822188058516656
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7506822188058516658}
-  m_Enabled: 1
 --- !u!1 &7506822188154106831
 GameObject:
   m_ObjectHideFlags: 0
@@ -528,7 +511,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7506822188537719379}
   - component: {fileID: 7506822188537719377}
-  - component: {fileID: 7506822188537719376}
   m_Layer: 0
   m_Name: Camera_Room1
   m_TagString: Untagged
@@ -581,7 +563,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 23
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -593,14 +575,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &7506822188537719376
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7506822188537719378}
-  m_Enabled: 1
 --- !u!1 &7506822188709218631
 GameObject:
   m_ObjectHideFlags: 0
