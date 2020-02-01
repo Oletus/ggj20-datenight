@@ -27,7 +27,8 @@ public enum StatefulGameObjectId
     WateringCan,
     Phone,
     WaterPipe,
-    Tape
+    Tape,
+    Tap
 }
 
 public class StatefulGameObject : MonoBehaviour
