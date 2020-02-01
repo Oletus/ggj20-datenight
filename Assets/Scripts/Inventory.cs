@@ -51,6 +51,26 @@ public class Inventory : MonoBehaviour
             // TODO: reset to the original position and scene
             this.CurrentPickedObject = null;
         }
+
+        // TODO: Update hilight
+    }
+
+    private StatefulGameObject GetObjectFromRay(Ray ray)
+    {
+        RaycastHit[] raycastHits = Physics.RaycastAll(ray);
+        if ( raycastHits.Length > 0 )
+        {
+            foreach ( RaycastHit hitInfo in raycastHits )
+            {
+                StatefulGameObject hitObject = hitInfo.transform.GetComponentInParent<StatefulGameObject>();
+                if ( hitObject == null || hitObject == this.CurrentPickedObject )
+                {
+                    continue;
+                }
+                return hitObject;
+            }
+        }
+        return null;
     }
 
     private void UpdatePicking()
@@ -58,42 +78,30 @@ public class Inventory : MonoBehaviour
         Pointer pointerDown = Pointer.CreateOnPointerDown();
         if (pointerDown != null)
         {
-            RaycastHit[] raycastHits = Physics.RaycastAll(pointerDown.GetRay(PickingCamera));
-            if (raycastHits.Length > 0)
+            StatefulGameObject hitObject = GetObjectFromRay(pointerDown.GetRay(PickingCamera));
+            if (hitObject != null)
             {
-                foreach (RaycastHit hitInfo in raycastHits)
+                // pick up the item if no item is currently picked up
+                if (CurrentPickedObject == null)
                 {
-                    StatefulGameObject hitObject = hitInfo.transform.GetComponentInParent<StatefulGameObject>();
-                    if (hitObject == null || hitObject == this.CurrentPickedObject)
+                    if (hitObject.CanPickUp())
                     {
-                        continue;
+                        CurrentPickedObject = hitObject;
+                        CurrentPointer = pointerDown;
                     }
-
-                    // pick up the item if no item is currently picked up
-                    if (CurrentPickedObject == null)
+                }
+                // try to use the picked object on another item
+                else
+                {
+                    var useItemAction = TryGetUseItemAction(CurrentPickedObject, hitObject, RoomGenerator.Instance.GetRoomStateByRoom(hitObject.ParentRoom));
+                    if (useItemAction != null)
                     {
-                        if (hitObject.CanPickUp())
+                        bool success = useItemAction();
+                        if(success)
                         {
-                            CurrentPickedObject = hitObject;
-                            CurrentPointer = pointerDown;
-                            break;
-                        }
-                    }
-                    // try to use the picked object on another item
-                    else
-                    {
-                        var useItemAction = TryGetUseItemAction(CurrentPickedObject, hitObject, RoomGenerator.Instance.GetRoomStateByRoom(hitObject.ParentRoom));
-                        if (useItemAction != null)
-                        {
-                            bool success = useItemAction();
-                            if(success)
-                            {
 
-                                CurrentPickedObject.DisableAll();
-                                CurrentPickedObject = null;
-                            }
-
-                            break;
+                            CurrentPickedObject.DisableAll();
+                            CurrentPickedObject = null;
                         }
                     }
                 }
