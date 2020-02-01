@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class RoomGenerator : MonoBehaviour
 {
+    public static RoomGenerator Instance { get; private set; }
     const int ROOM_COUNT = 4;
 
     [ReorderableList]
@@ -13,6 +14,7 @@ public class RoomGenerator : MonoBehaviour
 
     private void Awake()
     {
+        Instance = this;
         GenerateInitialRoomStates();
     }
 
@@ -25,7 +27,9 @@ public class RoomGenerator : MonoBehaviour
             room.RoomIndex = i;
             room.ApplyState(nextRoomState);
 
-            nextRoomState.StateChanged += () => this.RegenerateRoomsFromIndex(i);
+            var localIndex = i;
+            nextRoomState.StateChanged += () => this.RegenerateRoomsFromIndex(localIndex);
+            roomStates[i] = nextRoomState;
             nextRoomState = nextRoomState.GenerateNextState();
         }
     }
@@ -44,5 +48,11 @@ public class RoomGenerator : MonoBehaviour
             roomStates[i] = nextRoomState;
             nextRoomState = nextRoomState.GenerateNextState();
         }
+    }
+
+    public RoomState GetRoomStateByRoom(Room room)
+    {
+        var roomIndex = Rooms.IndexOf(room);
+        return roomIndex >= 0 ? roomStates[roomIndex] : null;
     }
 }

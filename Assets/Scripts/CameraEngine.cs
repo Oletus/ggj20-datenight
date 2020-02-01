@@ -12,5 +12,4 @@ public class CameraEngine : MonoBehaviour
         MainCam.transform.position = RoomCam[roomNumber].transform.position;
         MainCam.transform.rotation = RoomCam[roomNumber].transform.rotation;
     }
-
 }

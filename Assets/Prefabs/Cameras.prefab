@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7506822187215455691}
   - component: {fileID: 7506822187215455689}
+  - component: {fileID: 7583845679626650699}
   m_Layer: 0
   m_Name: Camera_Room3
   m_TagString: Untagged
@@ -74,6 +75,25 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!95 &7583845679626650699
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7506822187215455690}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7506822187232829704
 GameObject:
   m_ObjectHideFlags: 0
@@ -84,6 +104,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7506822187232829705}
   - component: {fileID: 7506822187232829703}
+  - component: {fileID: 6444166758278324718}
   m_Layer: 0
   m_Name: Camera_Room2
   m_TagString: Untagged
@@ -148,6 +169,25 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!95 &6444166758278324718
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7506822187232829704}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7506822187261888375
 GameObject:
   m_ObjectHideFlags: 0
@@ -190,6 +230,7 @@ GameObject:
   - component: {fileID: 7506822187297971414}
   - component: {fileID: 7506822187297971412}
   - component: {fileID: 879496280665497885}
+  - component: {fileID: 1427282994432246116}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: Untagged
@@ -270,6 +311,25 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 23
   m_MaxRayIntersections: 0
+--- !u!95 &1427282994432246116
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7506822187297971417}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7506822187611617665
 GameObject:
   m_ObjectHideFlags: 0
@@ -392,6 +452,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7506822188058516659}
   - component: {fileID: 7506822188058516657}
+  - component: {fileID: 6808948998840362298}
   m_Layer: 0
   m_Name: Camera_Room4
   m_TagString: Untagged
@@ -456,6 +517,25 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!95 &6808948998840362298
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7506822188058516658}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7506822188154106831
 GameObject:
   m_ObjectHideFlags: 0
@@ -528,6 +608,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7506822188537719379}
   - component: {fileID: 7506822188537719377}
+  - component: {fileID: 5359551469107574284}
   m_Layer: 0
   m_Name: Camera_Room1
   m_TagString: Untagged
@@ -592,6 +673,25 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!95 &5359551469107574284
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7506822188537719378}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7506822188709218631
 GameObject:
   m_ObjectHideFlags: 0
