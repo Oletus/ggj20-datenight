@@ -2,22 +2,52 @@
 
 public class RoomGenerator : MonoBehaviour
 {
-    public GameObject RoomPrefab;
-    public RoomState InitialRoomState = new RoomState();
+    const int ROOM_COUNT = 4;
+    private Room[] generatedRooms = new Room[ROOM_COUNT];
+    private RoomState[] roomStates = new RoomState[ROOM_COUNT];
 
-    public void GenerateRoom()
+    [SerializeField] private GameObject RoomPrefab;
+
+    private void Awake()
     {
-        var nextRoomState = this.InitialRoomState;
-        const int RoomsToGenerate = 4;
-        for (int i = 0; i < RoomsToGenerate; i++)
+        this.GenerateInitialRooms();  
+    }
+
+    private void GenerateInitialRooms()
+    {
+        var roomContainerObject = new GameObject("Generated Rooms");
+
+        var nextRoomState = new RoomState();
+        for (int i = 0; i < ROOM_COUNT; i++)
         {
-            var instantiated = Instantiate(RoomPrefab);
+            var instantiated = Instantiate(RoomPrefab, roomContainerObject.transform);
+            instantiated.name = "Room " + i;
+
             instantiated.transform.position = new Vector3(10, 0, 0) * i; // TODO: correct position and camera setup
 
             Room room = instantiated.GetComponent<Room>();
+            room.RoomIndex = i;
             room.ApplyState(nextRoomState);
 
+            nextRoomState.StateChanged += () => this.RegenerateRoomsFromIndex(i);
 
+            generatedRooms[i] = room;
+            nextRoomState = nextRoomState.GenerateNextState();
+        }
+    }
+
+    private void RegenerateRoomsFromIndex(int startIndex)
+    {
+        var nextRoomState = roomStates[startIndex];
+        for (int i = startIndex; i < ROOM_COUNT; i++)
+        {
+            generatedRooms[i].ApplyState(nextRoomState);
+            if(i != startIndex)
+            {
+                nextRoomState.StateChanged += () => RegenerateRoomsFromIndex(i);
+            }
+
+            roomStates[i] = nextRoomState;
             nextRoomState = nextRoomState.GenerateNextState();
         }
     }
