@@ -35,8 +35,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 228, y: 5.25}
-  m_SizeDelta: {x: 384, y: 213.51}
+  m_AnchoredPosition: {x: 228, y: 3.93}
+  m_SizeDelta: {x: 384, y: 216.14}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &55077013
 CanvasRenderer:
@@ -145,7 +145,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &645818301
 RectTransform:
   m_ObjectHideFlags: 0
@@ -681,8 +681,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -710.16, y: 5.25}
-  m_SizeDelta: {x: 384, y: 213.51}
+  m_AnchoredPosition: {x: -695.46, y: 5.25}
+  m_SizeDelta: {x: 383.56, y: 213.51}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1688975621
 CanvasRenderer:
@@ -809,8 +809,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 708, y: 5.25}
-  m_SizeDelta: {x: 384, y: 213.51}
+  m_AnchoredPosition: {x: 691.78, y: 3.9288}
+  m_SizeDelta: {x: 382.25, y: 216.14}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1892755512
 CanvasRenderer:
@@ -912,7 +912,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1396165070698624331}
   m_Layer: 0
-  m_Name: CameraSytem
+  m_Name: CameraSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
