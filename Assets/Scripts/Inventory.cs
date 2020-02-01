@@ -58,7 +58,7 @@ public class Inventory : MonoBehaviour
             this.CurrentPickedObject = null;
         }
 
-        // TODO: Update hilight
+        this.UpdateHover();
     }
 
     private StatefulGameObject GetObjectFromRay(Ray ray)
@@ -77,6 +77,12 @@ public class Inventory : MonoBehaviour
             }
         }
         return null;
+    }
+
+    private void UpdateHover()
+    {
+        Pointer hoverPointer = new Pointer();
+        CurrentHoverObject = GetObjectFromRay(hoverPointer.GetRay(PickingCamera));
     }
 
     private void UpdatePicking()
