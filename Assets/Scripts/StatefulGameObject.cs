@@ -63,12 +63,18 @@ public class StatefulGameObject : MonoBehaviour
         {
             if ( Hilighted )
             {
-                r.material.SetColor("_EmissionColor", Color.white*(Mathf.Sin((Time.time - LastHilightedTime) * HILIGHT_PULSE_SPEED) * 0.5f + 0.5f) * 0.8f);
-                r.material.EnableKeyword("_EMISSION");
+                foreach ( Material mat in r.materials )
+                {
+                    mat.SetColor("_EmissionColor", Color.white * (Mathf.Sin((Time.time - LastHilightedTime) * HILIGHT_PULSE_SPEED) * 0.5f + 0.5f) * 0.8f);
+                    mat.EnableKeyword("_EMISSION");
+                }
             }
             else
             {
-                r.material.SetColor("_EmissionColor", Color.black);
+                foreach ( Material mat in r.materials )
+                {
+                    mat.SetColor("_EmissionColor", Color.black);
+                }
             }
         }
     }
