@@ -71,6 +71,7 @@ public class InteractableObject : MonoBehaviour
     private float PickedTime;
 
     private const float OBJECT_PICK_TRANSITION_SPEED = 6.0f;
+    private const float PICKED_OBJECT_OFFSET_FROM_CURSOR = 0.15f;
 
     public void OnPick()
     {
@@ -84,7 +85,7 @@ public class InteractableObject : MonoBehaviour
         Ray ray = pointer.GetRay(pickingCamera);
 
         float offsetAlongRay = 1.0f / ray.direction.z;
-        Vector3 hoverPos = ray.origin + ray.direction * offsetAlongRay;
+        Vector3 hoverPos = ray.origin + ray.direction * offsetAlongRay + (Vector3.right + Vector3.down) * PICKED_OBJECT_OFFSET_FROM_CURSOR;
 
         float pickedT = Mathf.Clamp01((Time.time - PickedTime) * OBJECT_PICK_TRANSITION_SPEED);
 
