@@ -143,14 +143,18 @@ public class StatefulGameObject : MonoBehaviour
         }
     }
 
-    private float PickedZ;
+    private Vector3 PosOnPick;
+    private float PickedTime;
+
+    private const float OBJECT_PICK_TRANSITION_SPEED = 6.0f;
 
     public void OnPick()
     {
         if ( ActiveObject != null )
         {
-            PickedZ = ActiveObject.transform.position.z;
+            PosOnPick = ActiveObject.transform.position;
         }
+        PickedTime = Time.time;
     }
 
     public void PositionAsPicked(Camera pickingCamera, Pointer pointer)
@@ -158,7 +162,13 @@ public class StatefulGameObject : MonoBehaviour
         if ( ActiveObject != null )
         {
             Ray ray = pointer.GetRay(pickingCamera);
-            ActiveObject.transform.position = ray.origin + ray.direction * 2.5f;
+
+            float offsetAlongRay = 1.0f / ray.direction.z;
+            Vector3 hoverPos = ray.origin + ray.direction * offsetAlongRay;
+
+            float pickedT = Mathf.Clamp01((Time.time - PickedTime) * OBJECT_PICK_TRANSITION_SPEED);
+
+            ActiveObject.transform.position = Vector3.Lerp(PosOnPick, hoverPos, pickedT);
         }
     }
 
