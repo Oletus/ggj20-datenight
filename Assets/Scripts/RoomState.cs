@@ -34,6 +34,12 @@ public enum WaterPipeState
     Fixed, //  Fixed with own tools
 }
 
+public enum WaterCanState
+{
+    FallenDown,
+    Filled,
+}
+
 public delegate void RoomStateChanged();
 public class RoomState
 { 
@@ -41,6 +47,7 @@ public class RoomState
     public ElectricityBillState ElectricityBillState { get; private set; }
     public CashState CashState { get; private set; }
     public WaterPipeState WaterPipeState { get; private set; }
+    public WaterCanState WaterCanState { get; private set; }
 
     private int _daysSincePlumberCalled = 0;
     private bool _plumberCalled = false;
@@ -50,6 +57,8 @@ public class RoomState
         FlowerState = FlowerState.AliveNotWatered;
         ElectricityBillState = ElectricityBillState.OnTable;
         CashState = CashState.OnTable;
+        WaterCanState = WaterCanState.FallenDown;
+        WaterPipeState = WaterPipeState.PipeBroken;
     }
 
     private RoomState(RoomState other)
@@ -138,6 +147,18 @@ public class RoomState
             {
                 GuideText.Instance.SetText("You have already called the plumber");
             }
+        }
+
+        return false;
+    }
+
+    public bool FillWateringCan()
+    {
+        if(WaterCanState == WaterCanState.FallenDown)
+        {
+            WaterCanState = WaterCanState.Filled;
+            this.StateChanged();
+            return true;
         }
 
         return false;

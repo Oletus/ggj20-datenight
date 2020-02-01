@@ -6,6 +6,12 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
+    [SerializeField] private UnityEngine.UI.Button PutBackButton;
+
+    [SerializeField] private CameraEngine CameraSystem;
+
+    private int PickedFromRoomNumber = -1;
+
     private InteractableObject _CurrentPickedObject;
     private InteractableObject CurrentPickedObject
     {
@@ -23,6 +29,10 @@ public class Inventory : MonoBehaviour
             if (_CurrentPickedObject)
             {
                 _CurrentPickedObject.OnPick();
+                Vector2 viewportPos = PickingCamera.WorldToViewportPoint(_CurrentPickedObject.PosOnPick);
+                PutBackButton.GetComponent<RectTransform>().anchorMax = viewportPos;
+                PutBackButton.GetComponent<RectTransform>().anchorMin = viewportPos;
+                PickedFromRoomNumber = CameraSystem.RoomNumber;
             }
         }
     }
@@ -55,6 +65,21 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    private void PutBackObject()
+    {
+        if ( CurrentPickedObject != null )
+        {
+            CurrentPickedObject.PutBack();
+
+        }
+        this.CurrentPickedObject = null;
+    }
+
+    private void Awake()
+    {
+        PutBackButton.onClick.AddListener(PutBackObject);
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -67,15 +92,12 @@ public class Inventory : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if( CurrentPickedObject != null)
-            {
-                CurrentPickedObject.ResetPosition();
-
-            }
-            this.CurrentPickedObject = null;
+            PutBackObject();
         }
 
         this.UpdateHover();
+
+        PutBackButton.gameObject.SetActive(CurrentPickedObject != null && CameraSystem.RoomNumber == PickedFromRoomNumber);
     }
 
     private InteractableObject GetObjectFromRay(Ray ray)
@@ -177,7 +199,31 @@ public class Inventory : MonoBehaviour
             switch(target.Id)
             {
                 case StatefulGameObjectId.Flower:
-                    return () => roomState.WaterPlant();
+                    if (roomState.WaterCanState == WaterCanState.Filled)
+                    {
+                        return () => roomState.WaterPlant();
+                    }
+                    break;
+
+                case StatefulGameObjectId.Tap:
+                    if (roomState.WaterPipeState == WaterPipeState.Fixed)
+                    {
+                        return () =>
+                        {
+                            GuideText.Instance.SetText("You filled the watering can");
+                            if(roomState.FillWateringCan())
+                            {
+                               // this.CurrentPickedObject = hitobj
+                            }
+                            return false;
+                        };
+                    }
+                    else
+                    {
+                        return () => { GuideText.Instance.SetText("The tap doesnt work because the pipe is broken"); return false; };
+                    }
+
+                    break;
             }
         }
         else if(item.Id == StatefulGameObjectId.Flower)
@@ -202,6 +248,7 @@ public class Inventory : MonoBehaviour
             }
         }
 
-        return null;
+
+        return () => { GuideText.Instance.SetText("Nothing happens..."); return false; };
     }
 }

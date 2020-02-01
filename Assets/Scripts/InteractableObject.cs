@@ -19,6 +19,8 @@ public class InteractableObject : MonoBehaviour
     [SerializeField] private InteractionMode _InteractionMode = InteractionMode.Clicking;
     public InteractionMode InteractionMode { get { return _InteractionMode; } }
 
+    [SerializeField] private GameObject PutBackIndicator;
+
     [SerializeField] private float ScaleWhenPicked = 1.0f;
 
     public Room ParentRoom
@@ -66,7 +68,7 @@ public class InteractableObject : MonoBehaviour
         }
     }
 
-    private Vector3 PosOnPick;
+    public Vector3 PosOnPick { get; private set; }
     private Vector3 ScaleOnPick;
     private float PickedTime;
 
@@ -93,7 +95,7 @@ public class InteractableObject : MonoBehaviour
         transform.localScale = Vector3.Lerp(ScaleOnPick, Vector3.one * ScaleWhenPicked, pickedT);
     }
 
-    public void ResetPosition()
+    public void PutBack()
     {
         transform.position = PosOnPick;
         transform.localScale = ScaleOnPick;

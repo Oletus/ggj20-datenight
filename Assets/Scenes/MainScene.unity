@@ -128,10 +128,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 645818300, guid: 4b55df0392beaae4b8748174bc8dabb0, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1163890795767199890, guid: 4b55df0392beaae4b8748174bc8dabb0,
         type: 3}
       propertyPath: m_SizeDelta.y
@@ -219,6 +215,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b55df0392beaae4b8748174bc8dabb0, type: 3}
+--- !u!114 &347100240 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6052915296286049300, guid: 4b55df0392beaae4b8748174bc8dabb0,
+    type: 3}
+  m_PrefabInstance: {fileID: 347100237}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &407916546
 GameObject:
   m_ObjectHideFlags: 0
@@ -248,6 +256,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db84977f49809c645bfa3c845b6d4918, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PutBackButton: {fileID: 347100240}
+  CameraSystem: {fileID: 1568242976}
   PickingCamera: {fileID: 494426013}
 --- !u!4 &407916548
 Transform:
@@ -553,6 +563,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e2bcb51ef8aba814e856b43d89f513a2, type: 3}
+--- !u!114 &1568242976 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3302051910637110102, guid: 4b55df0392beaae4b8748174bc8dabb0,
+    type: 3}
+  m_PrefabInstance: {fileID: 347100237}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68e3ee0accba8d046a36a16c4425bdba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1618225429 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5459801347103995046, guid: e2bcb51ef8aba814e856b43d89f513a2,
