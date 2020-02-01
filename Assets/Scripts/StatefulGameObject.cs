@@ -18,29 +18,54 @@ public class StateDefinition
     [SerializeField] public GameObject ActiveObject;
 }
 
+public enum StatefulGameObjectId
+{
+    Flower,
+    ElectricityBill,
+    Money,
+    Trash,
+    WateringCan
+}
+
 public class StatefulGameObject : MonoBehaviour
 {
-    [SerializeField] private string _Id;
-    private string Id => _Id.ToLower().Trim();
+    [SerializeField] private StatefulGameObjectId _Id;
+    public StatefulGameObjectId Id { get { return _Id; } }
 
     [ReorderableList]
     [SerializeField] private List<StateDefinition> States;
 
-    [ReorderableList]
-    [SerializeField] private List<string> IdsThisCanBeUsedOn;
-
     [SerializeField] private bool _CanBePicked = true;
 
-    private void Awake()
+    public Room ParentRoom
     {
-        for( int i = 0; i < IdsThisCanBeUsedOn.Count; ++i )
-        {
-            IdsThisCanBeUsedOn[i] = IdsThisCanBeUsedOn[i].ToLower().Trim();
-        }
+        get { return this.GetComponentInParent<Room>(); }
     }
 
     public string ActiveState { get; private set; }
     public GameObject ActiveObject { get; private set; }
+
+    private void Update()
+    {
+        if ( ActiveObject != null )
+        {
+            Renderer[] renderers = ActiveObject.GetComponentsInChildren<Renderer>();
+            foreach ( Renderer r in renderers )
+            {
+                if ( Hilighted )
+                {
+                    r.material.SetColor("_EmissionColor", Color.white);
+                    r.material.EnableKeyword("_EMISSION");
+                }
+                else
+                {
+                    r.material.SetColor("_EmissionColor", Color.black);
+                }
+            }
+        }
+    }
+
+    public bool Hilighted { get; set; }
 
     private HashSet<GameObject> ActiveObjectsFromAllStates
     {
@@ -89,11 +114,6 @@ public class StatefulGameObject : MonoBehaviour
         {
             obj.SetActive(false);
         }
-    }
-
-    public bool CanBeUsedOn(StatefulGameObject other)
-    {
-        return IdsThisCanBeUsedOn.Contains(other.Id);
     }
 
     public bool CanPickUp()
