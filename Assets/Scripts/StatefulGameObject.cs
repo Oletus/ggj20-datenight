@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using NaughtyAttributes;
+using System.Collections.Generic;
 using UnityEngine;
 
 #pragma warning disable 0649
@@ -14,10 +15,10 @@ public class StatefulGameObject : MonoBehaviour
 {
     [SerializeField] private string Id;
 
-    // TODO: Add NaughtyAttributes library
-    //[ReorderableList]
+    [ReorderableList]
     [SerializeField] private List<StateObjectPair> States;
 
+    [ReorderableList]
     [SerializeField] private List<string> IdsThisCanBeUsedOn;
 
     public void SetState<T>(T activeState) where T : System.Enum
