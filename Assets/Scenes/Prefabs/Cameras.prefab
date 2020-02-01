@@ -415,7 +415,7 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.77
+    x: 0.76
     y: 0.02
     width: 0.2
     height: 0.2
@@ -551,7 +551,7 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.03
+    x: 0.037
     y: 0.02
     width: 0.2
     height: 0.2
