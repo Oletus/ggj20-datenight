@@ -191,6 +191,19 @@ public class Inventory : MonoBehaviour
                     return () => { GuideText.Instance.SetText("You tried putting a flower on a flower"); return false; };
             }
         }
+         else if(item.Id == StatefulGameObjectId.Tape)
+        {
+            switch(target.Id)
+            {
+                case StatefulGameObjectId.WaterPipe:
+                    if(roomState.WaterPipeState == WaterPipeState.PipeBroken)
+                    {
+                        return () => roomState.FixPipe();
+                    }
+
+                    break;
+            }
+        }
 
         return null;
     }
