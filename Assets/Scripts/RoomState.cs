@@ -25,10 +25,21 @@ public class RoomState
     public FlowerState FlowerState;
     public ElectricityBillState ElectricityBillState;
 
+    private RoomState(RoomState other)
+    {
+        FlowerState = other.FlowerState;
+        ElectricityBillState = other.ElectricityBillState;
+    }
+
     public RoomState GenerateNextState()
     {
-        // TODO: This should generate the state for the next day
-        return this;
+        RoomState nextState = new RoomState(this);
+
+        if ( FlowerState == FlowerState.AliveNotWatered )
+        {
+            nextState.FlowerState = FlowerState.Dry;
+        }
+        return nextState;
     }
     
 }
