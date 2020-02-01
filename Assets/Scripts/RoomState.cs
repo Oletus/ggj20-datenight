@@ -29,14 +29,22 @@ public enum CashState
 
 public class RoomState
 {
-    public FlowerState FlowerState;
-    public ElectricityBillState ElectricityBillState;
-    public CashState CashState;
+    public FlowerState FlowerState { get; private set; }
+    public ElectricityBillState ElectricityBillState { get; private set; }
+    public CashState CashState { get; private set; }
+
+    public RoomState()
+    {
+        FlowerState = FlowerState.AliveNotWatered;
+        ElectricityBillState = ElectricityBillState.OnTable;
+        CashState = CashState.OnTable;
+    }
 
     private RoomState(RoomState other)
     {
         FlowerState = other.FlowerState;
         ElectricityBillState = other.ElectricityBillState;
+        CashState = other.CashState;
     }
 
     public RoomState GenerateNextState()

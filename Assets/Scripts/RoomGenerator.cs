@@ -3,11 +3,7 @@
 public class RoomGenerator : MonoBehaviour
 {
     public GameObject RoomPrefab;
-    public RoomState InitialRoomState = new RoomState
-    {
-        FlowerState = FlowerState.AliveNotWatered,
-        ElectricityBillState = ElectricityBillState.OnTable
-    };
+    public RoomState InitialRoomState = new RoomState();
 
     public void GenerateRoom()
     {
