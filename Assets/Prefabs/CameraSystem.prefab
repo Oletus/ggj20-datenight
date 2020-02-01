@@ -268,6 +268,51 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1396165070698624331}
     m_Modifications:
+    - target: {fileID: 1760252099828217356, guid: f097605cfca0da845aaf49958556b5b7,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5517900871923160585, guid: f097605cfca0da845aaf49958556b5b7,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5517900871923160585, guid: f097605cfca0da845aaf49958556b5b7,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 34.504982
+      objectReference: {fileID: 0}
+    - target: {fileID: 7284706235431291865, guid: f097605cfca0da845aaf49958556b5b7,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7284706235431291865, guid: f097605cfca0da845aaf49958556b5b7,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 34.511177
+      objectReference: {fileID: 0}
+    - target: {fileID: 7455893167416092316, guid: f097605cfca0da845aaf49958556b5b7,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7455893167416092316, guid: f097605cfca0da845aaf49958556b5b7,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 35.13999
+      objectReference: {fileID: 0}
+    - target: {fileID: 7602828222499649282, guid: f097605cfca0da845aaf49958556b5b7,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7602828222499649282, guid: f097605cfca0da845aaf49958556b5b7,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 34.504982
+      objectReference: {fileID: 0}
     - target: {fileID: 8765222582885771011, guid: f097605cfca0da845aaf49958556b5b7,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
