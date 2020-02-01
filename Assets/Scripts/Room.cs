@@ -6,7 +6,7 @@ public class Room : MonoBehaviour
 {
     [SerializeField] private StatefulGameObject Flower;
     [SerializeField] private StatefulGameObject ElectricityBill;
-    public int RoomIndex;
+    [System.NonSerialized] public int RoomIndex;
 
     public void ApplyState(RoomState roomState)
     {
