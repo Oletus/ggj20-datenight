@@ -25,7 +25,8 @@ public enum StatefulGameObjectId
     Money,
     Trash,
     WateringCan,
-    Phone
+    Phone,
+    WaterPipe
 }
 
 public enum InteractionMode

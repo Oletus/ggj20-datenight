@@ -29,10 +29,9 @@ public enum CashState
 
 public enum WaterPipeState
 {
-    PipeBroken,
-    PlumberCalled,
-    PlumberFixing,
-    PipeFixed
+    PipeBroken, // Initial state
+    PlumberFixing, // after plumber is called, it takes 3 days for him to come. So must be called on day for plumber to appear on day 4
+    Fixed, //  Fixed with own tools
 }
 
 public delegate void RoomStateChanged();
@@ -42,6 +41,9 @@ public class RoomState
     public ElectricityBillState ElectricityBillState { get; private set; }
     public CashState CashState { get; private set; }
     public WaterPipeState WaterPipeState { get; private set; }
+
+    private int _daysSincePlumberCalled = 0;
+    private bool _plumberCalled = false;
 
     public RoomState()
     {
@@ -55,6 +57,8 @@ public class RoomState
         FlowerState = other.FlowerState;
         ElectricityBillState = other.ElectricityBillState;
         CashState = other.CashState;
+        _daysSincePlumberCalled = other._daysSincePlumberCalled;
+        _plumberCalled = other._plumberCalled;
     }
 
     public event RoomStateChanged StateChanged;
@@ -82,6 +86,15 @@ public class RoomState
                 nextState.CashState = CashState.TakenOutOfTrash;
                 break;
         }
+
+        if(_plumberCalled && WaterPipeState == WaterPipeState.PipeBroken)
+        {
+            if(++nextState._daysSincePlumberCalled == 3)
+            {
+                nextState.WaterPipeState = WaterPipeState.PlumberFixing;
+            }
+        }
+
         return nextState;
     }
 
@@ -113,10 +126,17 @@ public class RoomState
     {
         if(WaterPipeState == WaterPipeState.PipeBroken)
         {
-            WaterPipeState = WaterPipeState.PlumberCalled;
-            GuideText.Instance.SetText("Plumber called");
-            this.StateChanged();
-            return true;
+            if(!_plumberCalled)
+            {
+                _plumberCalled = true;
+                GuideText.Instance.SetText("\"Hello? Yes, this is plumber. You need to fix a leaking pipe? Okay, I will come in three days from  now\"");
+                this.StateChanged();
+                return true;
+            }
+            else
+            {
+                GuideText.Instance.SetText("You have already called the plumber");
+            }
         }
 
         return false;
