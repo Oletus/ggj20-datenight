@@ -7,8 +7,8 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
     private Vector3? _returnCurrentPickedObjectPosition = null;
-    private StatefulGameObject _CurrentPickedObject;
-    private StatefulGameObject CurrentPickedObject
+    private InteractableObject _CurrentPickedObject;
+    private InteractableObject CurrentPickedObject
     {
         get
         {
@@ -31,8 +31,8 @@ public class Inventory : MonoBehaviour
 
     [SerializeField] private Camera PickingCamera;
 
-    private StatefulGameObject _CurrentHoverObject;
-    private StatefulGameObject CurrentHoverObject
+    private InteractableObject _CurrentHoverObject;
+    private InteractableObject CurrentHoverObject
     {
         get
         {
@@ -80,14 +80,14 @@ public class Inventory : MonoBehaviour
         this.UpdateHover();
     }
 
-    private StatefulGameObject GetObjectFromRay(Ray ray)
+    private InteractableObject GetObjectFromRay(Ray ray)
     {
         RaycastHit[] raycastHits = Physics.RaycastAll(ray);
         if ( raycastHits.Length > 0 )
         {
             foreach ( RaycastHit hitInfo in raycastHits )
             {
-                StatefulGameObject hitObject = hitInfo.transform.GetComponentInParent<StatefulGameObject>();
+                InteractableObject hitObject = hitInfo.transform.GetComponentInParent<InteractableObject>();
                 if ( hitObject == null || hitObject == this.CurrentPickedObject )
                 {
                     continue;
@@ -109,7 +109,7 @@ public class Inventory : MonoBehaviour
         Pointer pointerDown = Pointer.CreateOnPointerDown();
         if (pointerDown != null)
         {
-            StatefulGameObject hitObject = GetObjectFromRay(pointerDown.GetRay(PickingCamera));
+            InteractableObject hitObject = GetObjectFromRay(pointerDown.GetRay(PickingCamera));
             if (hitObject != null)
             {
                 // pick up the item if no item is currently picked up
@@ -127,7 +127,7 @@ public class Inventory : MonoBehaviour
                     }
                 }
                 // try to use the picked object on another item
-                else
+                else if (CurrentPickedObject != null)
                 {
                     var useItemAction = TryGetUseItemAction(CurrentPickedObject, hitObject, RoomGenerator.Instance.GetRoomStateByRoom(hitObject.ParentRoom));
                     if (useItemAction != null)
@@ -136,7 +136,7 @@ public class Inventory : MonoBehaviour
                         if(success)
                         {
 
-                            CurrentPickedObject.DisableAll();
+                            CurrentPickedObject.gameObject.SetActive(false);
                             CurrentPickedObject = null;
                         }
                     }
@@ -145,7 +145,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    private bool OnClickItem(StatefulGameObject item, RoomState roomState)
+    private bool OnClickItem(InteractableObject item, RoomState roomState)
     {
         switch(item.Id)
         {
@@ -157,7 +157,7 @@ public class Inventory : MonoBehaviour
         return false;
     }
 
-    private Func<bool> TryGetUseItemAction(StatefulGameObject item, StatefulGameObject target, RoomState roomState)
+    private Func<bool> TryGetUseItemAction(InteractableObject item, InteractableObject target, RoomState roomState)
     {
         if(roomState == null)
         {
