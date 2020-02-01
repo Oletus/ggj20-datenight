@@ -8,9 +8,12 @@ public class GuideText : MonoBehaviour
     private float _timeSinceLastSetText = 10000;
     public Text Text { get { return this.GetComponent<Text>(); } }
 
+    public static GuideText Instance;
+
     private void Awake()
     {
         this.Text.CrossFadeAlpha(0, 0.5f, true);
+        Instance = this;
     }
 
     public void SetText(string text)
