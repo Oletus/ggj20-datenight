@@ -1,11 +1,9 @@
 ﻿
 public enum FlowerState
 {
-    AliveNotWatered,
-    Dry,
-
-    // "Completed"
-    AliveWatered,
+    Alive,
+    Lack,
+    Dead,
 }
 
 public enum ElectricityBillState
@@ -51,10 +49,12 @@ public class RoomState
 
     private int _daysSincePlumberCalled = 0;
     private bool _plumberCalled = false;
+    private bool _plantWatered = false;
+    private int _daysPlantHasBeenAlive = 0;
 
     public RoomState()
     {
-        FlowerState = FlowerState.AliveNotWatered;
+        FlowerState = FlowerState.Alive;
         ElectricityBillState = ElectricityBillState.OnTable;
         CashState = CashState.OnTable;
         WaterCanState = WaterCanState.FallenDown;
@@ -69,6 +69,8 @@ public class RoomState
         WaterPipeState = other.WaterPipeState;
         _daysSincePlumberCalled = other._daysSincePlumberCalled;
         _plumberCalled = other._plumberCalled;
+        _plantWatered = other._plantWatered;
+        _daysPlantHasBeenAlive = other._daysPlantHasBeenAlive;
     }
 
     public event RoomStateChanged StateChanged;
@@ -77,9 +79,27 @@ public class RoomState
     {
         RoomState nextState = new RoomState(this);
 
-        if ( FlowerState == FlowerState.AliveNotWatered )
+        switch(FlowerState)
         {
-            nextState.FlowerState = FlowerState.Dry;
+            case FlowerState.Alive:
+                if(!_plantWatered)
+                {
+                    if(_daysPlantHasBeenAlive == 0)
+                    {
+                        _daysPlantHasBeenAlive++;
+                    }
+                    else
+                    {
+                        nextState.FlowerState = FlowerState.Lack;
+                    }
+                }
+                break;
+            case FlowerState.Lack:
+                if (!_plantWatered)
+                {
+                    nextState.FlowerState = FlowerState.Dead;
+                }
+                break;
         }
         switch ( ElectricityBillState )
         {
@@ -110,9 +130,10 @@ public class RoomState
 
     public bool WaterPlant()
     {
-        if ( FlowerState == FlowerState.AliveNotWatered || FlowerState == FlowerState.AliveWatered )
+        if ( FlowerState == FlowerState.Alive || FlowerState == FlowerState.Lack)
         {
-            FlowerState = FlowerState.AliveWatered;
+            FlowerState = FlowerState.Alive;
+            _plantWatered = true;
             // TODO: Play sound?
             this.StateChanged();
             return true;

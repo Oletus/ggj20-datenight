@@ -198,9 +198,12 @@ public class Inventory : MonoBehaviour
             switch(target.Id)
             {
                 case StatefulGameObjectId.Flower:
-                    if (roomState.WaterCanState == WaterCanState.Filled)
+                    if (RoomGenerator.Instance.GetRoomStateByRoom(CurrentPickedObject.ParentRoom).WaterCanState == WaterCanState.Filled)
                     {
-                        return () => roomState.WaterPlant();
+                        return () =>
+                        {
+                            roomState.WaterPlant(); return false;
+                        };
                     }
                     break;
 

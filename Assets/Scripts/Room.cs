@@ -15,6 +15,7 @@ public class Room : MonoBehaviour
         this.Flower?.SetState(roomState.FlowerState);
         this.WaterPipe.SetState(roomState.WaterPipeState);
         this.WaterCan.SetState(roomState.WaterCanState);
+        this.Flower.SetState(roomState.FlowerState);
         this.ElectricityBill?.SetState(roomState.ElectricityBillState);
 
     }
