@@ -1,5 +1,6 @@
 ﻿using NaughtyAttributes;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -16,13 +17,22 @@ public class StateDefinition
 
 public class StatefulGameObject : MonoBehaviour
 {
-    [SerializeField] private string Id;
+    [SerializeField] private string _Id;
+    private string Id => _Id.ToLower().Trim();
 
     [ReorderableList]
     [SerializeField] private List<StateDefinition> States;
 
     [ReorderableList]
     [SerializeField] private List<string> IdsThisCanBeUsedOn;
+
+    private void Awake()
+    {
+        for( int i = 0; i < IdsThisCanBeUsedOn.Count; ++i )
+        {
+            IdsThisCanBeUsedOn[i] = IdsThisCanBeUsedOn[i].ToLower().Trim();
+        }
+    }
 
     public void SetState<T>(T activeState) where T : System.Enum
     {
@@ -50,5 +60,10 @@ public class StatefulGameObject : MonoBehaviour
                 obj.SetActive(false);
             }
         }
+    }
+
+    public bool CanBeUsedOn(StatefulGameObject other)
+    {
+        return IdsThisCanBeUsedOn.Contains(other.Id);
     }
 }
