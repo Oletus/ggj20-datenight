@@ -24,7 +24,15 @@ public enum StatefulGameObjectId
     ElectricityBill,
     Money,
     Trash,
-    WateringCan
+    WateringCan,
+    Phone
+}
+
+public enum InteractionMode
+{
+    None,
+    Picking,
+    Clicking,
 }
 
 public class StatefulGameObject : MonoBehaviour
@@ -35,7 +43,8 @@ public class StatefulGameObject : MonoBehaviour
     [ReorderableList]
     [SerializeField] private List<StateDefinition> States;
 
-    [SerializeField] private bool _CanBePicked = true;
+    [SerializeField] private InteractionMode _InteractionMode = InteractionMode.Clicking;
+    public InteractionMode InteractionMode { get { return _InteractionMode; } }
 
     public Room ParentRoom
     {
@@ -45,27 +54,45 @@ public class StatefulGameObject : MonoBehaviour
     public string ActiveState { get; private set; }
     public GameObject ActiveObject { get; private set; }
 
+    private const float HILIGHT_PULSE_SPEED = 4.0f;
+
     private void Update()
     {
-        if ( ActiveObject != null )
+        Renderer[] renderers = GetComponentsInChildren<Renderer>(false);
+        foreach ( Renderer r in renderers )
         {
-            Renderer[] renderers = ActiveObject.GetComponentsInChildren<Renderer>();
-            foreach ( Renderer r in renderers )
+            if ( Hilighted )
             {
-                if ( Hilighted )
+                foreach ( Material mat in r.materials )
                 {
-                    r.material.SetColor("_EmissionColor", Color.white);
-                    r.material.EnableKeyword("_EMISSION");
+                    mat.SetColor("_EmissionColor", Color.white * (Mathf.Sin((Time.time - LastHilightedTime) * HILIGHT_PULSE_SPEED) * 0.5f + 0.5f) * 0.8f);
+                    mat.EnableKeyword("_EMISSION");
                 }
-                else
+            }
+            else
+            {
+                foreach ( Material mat in r.materials )
                 {
-                    r.material.SetColor("_EmissionColor", Color.black);
+                    mat.SetColor("_EmissionColor", Color.black);
                 }
             }
         }
     }
 
-    public bool Hilighted { get; set; }
+    private bool _Hilighted;
+    private float LastHilightedTime;
+    public bool Hilighted
+    {
+        get => _Hilighted;
+        set
+        {
+            if ( !_Hilighted && value )
+            {
+                LastHilightedTime = Time.time;
+            }
+            _Hilighted = value;
+        }
+    }
 
     private HashSet<GameObject> ActiveObjectsFromAllStates
     {
@@ -116,9 +143,18 @@ public class StatefulGameObject : MonoBehaviour
         }
     }
 
-    public bool CanPickUp()
+    private Vector3 PosOnPick;
+    private float PickedTime;
+
+    private const float OBJECT_PICK_TRANSITION_SPEED = 6.0f;
+
+    public void OnPick()
     {
-        return _CanBePicked;
+        if ( ActiveObject != null )
+        {
+            PosOnPick = ActiveObject.transform.position;
+        }
+        PickedTime = Time.time;
     }
 
     public void PositionAsPicked(Camera pickingCamera, Pointer pointer)
@@ -126,7 +162,18 @@ public class StatefulGameObject : MonoBehaviour
         if ( ActiveObject != null )
         {
             Ray ray = pointer.GetRay(pickingCamera);
-            ActiveObject.transform.position = ray.origin + ray.direction * 2.5f;
+
+            float offsetAlongRay = 1.0f / ray.direction.z;
+            Vector3 hoverPos = ray.origin + ray.direction * offsetAlongRay;
+
+            float pickedT = Mathf.Clamp01((Time.time - PickedTime) * OBJECT_PICK_TRANSITION_SPEED);
+
+            ActiveObject.transform.position = Vector3.Lerp(PosOnPick, hoverPos, pickedT);
         }
+    }
+
+    public void ResetPosition(Vector3 pos)
+    {
+        this.ActiveObject.transform.position = pos;
     }
 }

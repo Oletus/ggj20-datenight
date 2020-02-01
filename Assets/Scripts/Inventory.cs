@@ -6,7 +6,27 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    private StatefulGameObject CurrentPickedObject;
+    private Vector3? _returnCurrentPickedObjectPosition = null;
+    private StatefulGameObject _CurrentPickedObject;
+    private StatefulGameObject CurrentPickedObject
+    {
+        get
+        {
+            return _CurrentPickedObject;
+        }
+        set
+        {
+            if (_CurrentPickedObject == value)
+            {
+                return;
+            }
+            _CurrentPickedObject = value;
+            if (_CurrentPickedObject)
+            {
+                _CurrentPickedObject.OnPick();
+            }
+        }
+    }
     private Pointer CurrentPointer;
 
     [SerializeField] private Camera PickingCamera;
@@ -48,7 +68,12 @@ public class Inventory : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            // TODO: reset to the original position and scene
+            if(_returnCurrentPickedObjectPosition.HasValue)
+            {
+                CurrentPickedObject.ResetPosition(_returnCurrentPickedObjectPosition.Value);
+                _returnCurrentPickedObjectPosition = null;
+
+            }
             this.CurrentPickedObject = null;
         }
 
@@ -88,12 +113,17 @@ public class Inventory : MonoBehaviour
             if (hitObject != null)
             {
                 // pick up the item if no item is currently picked up
-                if (CurrentPickedObject == null)
+                if (CurrentPickedObject == null && hitObject.InteractionMode != InteractionMode.None)
                 {
-                    if (hitObject.CanPickUp())
+                    if (hitObject.InteractionMode == InteractionMode.Clicking)
+                    {
+                        this.OnClickItem(hitObject, RoomGenerator.Instance.GetRoomStateByRoom(hitObject.ParentRoom));
+                    }
+                    else if(hitObject.InteractionMode == InteractionMode.Picking)
                     {
                         CurrentPickedObject = hitObject;
                         CurrentPointer = pointerDown;
+                        _returnCurrentPickedObjectPosition = CurrentPickedObject.transform.position;
                     }
                 }
                 // try to use the picked object on another item
@@ -113,6 +143,18 @@ public class Inventory : MonoBehaviour
                 }
             } 
         }
+    }
+
+    private bool OnClickItem(StatefulGameObject item, RoomState roomState)
+    {
+        switch(item.Id)
+        {
+            case StatefulGameObjectId.Phone:
+                return roomState.CallPlumber();
+
+        }
+
+        return false;
     }
 
     private Func<bool> TryGetUseItemAction(StatefulGameObject item, StatefulGameObject target, RoomState roomState)
