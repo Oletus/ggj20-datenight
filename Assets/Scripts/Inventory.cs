@@ -11,6 +11,31 @@ public class Inventory : MonoBehaviour
 
     [SerializeField] private Camera PickingCamera;
 
+    private StatefulGameObject _CurrentHoverObject;
+    private StatefulGameObject CurrentHoverObject
+    {
+        get
+        {
+            return _CurrentHoverObject;
+        }
+        set
+        {
+            if ( _CurrentHoverObject == value )
+            {
+                return;
+            }
+            if ( _CurrentHoverObject )
+            {
+                _CurrentHoverObject.Hilighted = false;
+            }
+            _CurrentHoverObject = value;
+            if ( _CurrentHoverObject )
+            {
+                _CurrentHoverObject.Hilighted = true;
+            }
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {

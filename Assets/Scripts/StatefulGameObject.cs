@@ -45,6 +45,27 @@ public class StatefulGameObject : MonoBehaviour
     public string ActiveState { get; private set; }
     public GameObject ActiveObject { get; private set; }
 
+    private void Update()
+    {
+        if ( ActiveObject != null )
+        {
+            Renderer[] renderers = ActiveObject.GetComponentsInChildren<Renderer>();
+            foreach ( Renderer r in renderers )
+            {
+                if ( Hilighted )
+                {
+                    r.material.SetColor("_EmissionColor", Color.white);
+                }
+                else
+                {
+                    r.material.SetColor("_EmissionColor", Color.black);
+                }
+            }
+        }
+    }
+
+    public bool Hilighted { get; set; }
+
     private HashSet<GameObject> ActiveObjectsFromAllStates
     {
         get
