@@ -105,7 +105,8 @@ public class StatefulGameObject : MonoBehaviour
     {
         if ( ActiveObject != null )
         {
-            ActiveObject.transform.position = pickingCamera.transform.position + pickingCamera.transform.forward * 10.0f;
+            Ray ray = pointer.GetRay(pickingCamera);
+            ActiveObject.transform.position = ray.origin + ray.direction * 2.5f;
         }
     }
 }
