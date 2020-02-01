@@ -45,6 +45,8 @@ public class StatefulGameObject : MonoBehaviour
     public string ActiveState { get; private set; }
     public GameObject ActiveObject { get; private set; }
 
+    private const float HILIGHT_PULSE_SPEED = 4.0f;
+
     private void Update()
     {
         if ( ActiveObject != null )
@@ -54,7 +56,7 @@ public class StatefulGameObject : MonoBehaviour
             {
                 if ( Hilighted )
                 {
-                    r.material.SetColor("_EmissionColor", Color.white);
+                    r.material.SetColor("_EmissionColor", Color.white*(Mathf.Sin((Time.time - LastHilightedTime) * HILIGHT_PULSE_SPEED) * 0.5f + 0.5f) * 0.8f);
                     r.material.EnableKeyword("_EMISSION");
                 }
                 else
@@ -65,7 +67,20 @@ public class StatefulGameObject : MonoBehaviour
         }
     }
 
-    public bool Hilighted { get; set; }
+    private bool _Hilighted;
+    private float LastHilightedTime;
+    public bool Hilighted
+    {
+        get => _Hilighted;
+        set
+        {
+            if ( !_Hilighted && value )
+            {
+                LastHilightedTime = Time.time;
+            }
+            _Hilighted = value;
+        }
+    }
 
     private HashSet<GameObject> ActiveObjectsFromAllStates
     {
