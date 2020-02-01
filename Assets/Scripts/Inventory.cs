@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    private Vector3? _returnCurrentPickedObjectPosition = null;
     private InteractableObject _CurrentPickedObject;
     private InteractableObject CurrentPickedObject
     {
@@ -68,10 +67,9 @@ public class Inventory : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if(_returnCurrentPickedObjectPosition.HasValue)
+            if( CurrentPickedObject != null)
             {
-                CurrentPickedObject.ResetPosition(_returnCurrentPickedObjectPosition.Value);
-                _returnCurrentPickedObjectPosition = null;
+                CurrentPickedObject.ResetPosition();
 
             }
             this.CurrentPickedObject = null;
@@ -123,7 +121,6 @@ public class Inventory : MonoBehaviour
                     {
                         CurrentPickedObject = hitObject;
                         CurrentPointer = pointerDown;
-                        _returnCurrentPickedObjectPosition = CurrentPickedObject.transform.position;
                     }
                 }
                 // try to use the picked object on another item
