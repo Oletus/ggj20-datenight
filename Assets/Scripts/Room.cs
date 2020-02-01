@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 
+[RequireComponent(typeof(StatefulFlower), typeof(StatefulElectricityBill))]
 public class Room : MonoBehaviour
 {
-    [SerializeField] private StatefulFlower Flower;
-    [SerializeField] private StatefulElectricityBill ElectricityBill;
+    public StatefulFlower Flower { get { return this.GetComponent<StatefulFlower>(); } }
+    public StatefulElectricityBill ElectricityBill { get { return this.GetComponent<StatefulElectricityBill>(); } }
 
     public void ApplyState(RoomState roomState)
     {

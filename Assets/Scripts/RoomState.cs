@@ -1,8 +1,11 @@
 ﻿
 public enum FlowerState
 {
-    Alive,
-    Dry
+    AliveNotWatered,
+    Dry,
+
+    // "Completed"
+    AliveWatered,
 }
 
 public enum ElectricityBillState
@@ -10,7 +13,10 @@ public enum ElectricityBillState
     OnTable,
     InTrashBin,
     InAnEmptiedTrashBinWithCashOnTable,
-    NoElectricity
+    NoElectricity,
+
+    // "Completed"
+    Paid
 }
 
 

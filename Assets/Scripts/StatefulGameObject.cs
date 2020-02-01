@@ -1,28 +1,25 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class StatefulFlower : StatefulGameObject<FlowerState> { }
-public class StatefulElectricityBill : StatefulGameObject<ElectricityBillState> { }
+[System.Serializable]
+public class StateObjectPair
+{
+    [SerializeField] public string State; // generic T didnt work with Unity editing -_- ....
+    [SerializeField] public GameObject Object; // TODO: do we actually want this to be a list?
+}
 
 public abstract class StatefulGameObject<T> : MonoBehaviour
     where T : System.Enum
 {
-    [System.Serializable]
-    public class StateObjectPair
-    {
-        public T State;
-        public GameObject Object; // TODO: do we actually want this to be a list?
-    }
-
     // TODO: Add NaughtyAttributes library
     //[ReorderableList]
-    [SerializeField] private List<StateObjectPair> States;
+    [SerializeField] public List<StateObjectPair> States;
 
     public void SetState(T activeState)
     {
         foreach(StateObjectPair pair in States)
         {
-            pair.Object.SetActive(pair.State.Equals(activeState));
+            pair.Object.SetActive(pair.State == activeState.ToString());
         }
     }
 }
