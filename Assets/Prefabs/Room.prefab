@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Flower: {fileID: 8672511832907373045}
-  ElectricityBill: {fileID: 8672511832907373045}
+  ElectricityBill: {fileID: 0}
   RoomIndex: 0
 --- !u!1001 &958337613524186562
 PrefabInstance:
