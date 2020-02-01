@@ -26,7 +26,8 @@ public enum StatefulGameObjectId
     Trash,
     WateringCan,
     Phone,
-    WaterPipe
+    WaterPipe,
+    Tape
 }
 
 public class StatefulGameObject : MonoBehaviour
