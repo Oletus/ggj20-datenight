@@ -27,12 +27,21 @@ public enum CashState
     Used
 }
 
+public enum WaterPipeState
+{
+    PipeBroken,
+    PlumberCalled,
+    PlumberFixing,
+    PipeFixed
+}
+
 public delegate void RoomStateChanged();
 public class RoomState
 { 
     public FlowerState FlowerState { get; private set; }
     public ElectricityBillState ElectricityBillState { get; private set; }
     public CashState CashState { get; private set; }
+    public WaterPipeState WaterPipeState { get; private set; }
 
     public RoomState()
     {
@@ -97,6 +106,19 @@ public class RoomState
             this.StateChanged();
             return true;
         }
+        return false;
+    }
+
+    public bool CallPlumber()
+    {
+        if(WaterPipeState == WaterPipeState.PipeBroken)
+        {
+            WaterPipeState = WaterPipeState.PlumberCalled;
+            GuideText.Instance.SetText("Plumber called");
+            this.StateChanged();
+            return true;
+        }
+
         return false;
     }
     

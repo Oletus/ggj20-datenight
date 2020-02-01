@@ -24,7 +24,15 @@ public enum StatefulGameObjectId
     ElectricityBill,
     Money,
     Trash,
-    WateringCan
+    WateringCan,
+    Phone
+}
+
+public enum InteractionMode
+{
+    None,
+    Picking,
+    Clicking,
 }
 
 public class StatefulGameObject : MonoBehaviour
@@ -35,7 +43,8 @@ public class StatefulGameObject : MonoBehaviour
     [ReorderableList]
     [SerializeField] private List<StateDefinition> States;
 
-    [SerializeField] private bool _CanBePicked = true;
+    [SerializeField] private InteractionMode _InteractionMode = InteractionMode.Clicking;
+    public InteractionMode InteractionMode { get { return _InteractionMode; } }
 
     public Room ParentRoom
     {
@@ -129,11 +138,6 @@ public class StatefulGameObject : MonoBehaviour
         {
             obj.SetActive(false);
         }
-    }
-
-    public bool CanPickUp()
-    {
-        return _CanBePicked;
     }
 
     public void PositionAsPicked(Camera pickingCamera, Pointer pointer)

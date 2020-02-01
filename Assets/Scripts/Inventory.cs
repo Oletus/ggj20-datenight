@@ -94,9 +94,13 @@ public class Inventory : MonoBehaviour
             if (hitObject != null)
             {
                 // pick up the item if no item is currently picked up
-                if (CurrentPickedObject == null)
+                if (CurrentPickedObject == null && hitObject.InteractionMode != InteractionMode.None)
                 {
-                    if (hitObject.CanPickUp())
+                    if (hitObject.InteractionMode == InteractionMode.Clicking)
+                    {
+                        this.OnClickItem(hitObject, RoomGenerator.Instance.GetRoomStateByRoom(hitObject.ParentRoom));
+                    }
+                    else if(hitObject.InteractionMode == InteractionMode.Picking)
                     {
                         CurrentPickedObject = hitObject;
                         CurrentPointer = pointerDown;
@@ -120,6 +124,18 @@ public class Inventory : MonoBehaviour
                 }
             } 
         }
+    }
+
+    private bool OnClickItem(StatefulGameObject item, RoomState roomState)
+    {
+        switch(item.Id)
+        {
+            case StatefulGameObjectId.Phone:
+                return roomState.CallPlumber();
+
+        }
+
+        return false;
     }
 
     private Func<bool> TryGetUseItemAction(StatefulGameObject item, StatefulGameObject target, RoomState roomState)

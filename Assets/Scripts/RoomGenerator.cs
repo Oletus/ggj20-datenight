@@ -27,7 +27,8 @@ public class RoomGenerator : MonoBehaviour
             room.RoomIndex = i;
             room.ApplyState(nextRoomState);
 
-            nextRoomState.StateChanged += () => this.RegenerateRoomsFromIndex(i);
+            var localIndex = i;
+            nextRoomState.StateChanged += () => this.RegenerateRoomsFromIndex(localIndex);
             roomStates[i] = nextRoomState;
             nextRoomState = nextRoomState.GenerateNextState();
         }

@@ -92,6 +92,37 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!64 &4820854442726569207
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4578329546581674779}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 1236735064719454678, guid: df7af4f82901e434e9531eecce57aa3f, type: 3}
+--- !u!114 &4648008415744237210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5423296848416420169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1374f0a76276448d08fcd32f7d3759ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Id: 5
+  States:
+  - _State: Phone
+    ActiveObject: {fileID: 4578329546581674779}
+  _InteractionMode: 2
 --- !u!1 &5459801347103995044
 GameObject:
   m_ObjectHideFlags: 0
@@ -146,7 +177,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Flower: {fileID: 8672511832907373045}
   ElectricityBill: {fileID: 0}
-  RoomIndex: 0
 --- !u!1001 &958337613524186562
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -328,9 +358,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df7af4f82901e434e9531eecce57aa3f, type: 3}
+--- !u!1 &5423296848416420169 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: df7af4f82901e434e9531eecce57aa3f,
+    type: 3}
+  m_PrefabInstance: {fileID: 4062957876922312768}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &9014010072661869402 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: df7af4f82901e434e9531eecce57aa3f,
+    type: 3}
+  m_PrefabInstance: {fileID: 4062957876922312768}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4578329546581674779 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -8652548623743491237, guid: df7af4f82901e434e9531eecce57aa3f,
     type: 3}
   m_PrefabInstance: {fileID: 4062957876922312768}
   m_PrefabAsset: {fileID: 0}
