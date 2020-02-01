@@ -1,34 +1,34 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿
+public enum FlowerState
+{
+    AliveNotWatered,
+    Dry,
+
+    // "Completed"
+    AliveWatered,
+}
+
+public enum ElectricityBillState
+{
+    OnTable,
+    InTrashBin,
+    InAnEmptiedTrashBinWithCashOnTable,
+    NoElectricity,
+
+    // "Completed"
+    Paid
+}
+
 
 public class RoomState
 {
-
-    public enum FlowerStateType
-    {
-        Alive,
-        Dry
-    }
-
-    private FlowerStateType FlowerState;
-
-    public void ApplyState(Room room)
-    {
-        if (FlowerState == FlowerStateType.Alive)
-        {
-            // Room.Flower.SetState(FlowerStateType.Alive);
-        }
-        else
-        {
-            // Room.Flower.SetState(FlowerStateType.Dry);
-        }
-    }
+    public FlowerState FlowerState;
+    public ElectricityBillState ElectricityBillState;
 
     public RoomState GenerateNextState()
     {
         // TODO: This should generate the state for the next day
-        return null;
+        return this;
     }
     
 }
