@@ -12,18 +12,26 @@ public enum ElectricityBillState
 {
     OnTable,
     InTrashBin,
-    InAnEmptiedTrashBinWithCashOnTable,
+    TakenOutOfTrash,
     NoElectricity,
 
     // "Completed"
     Paid
 }
 
+public enum CashState
+{
+    OnTable,
+    InTrashBin,
+    TakenOutOfTrash,
+    Used
+}
 
 public class RoomState
 {
     public FlowerState FlowerState;
     public ElectricityBillState ElectricityBillState;
+    public CashState CashState;
 
     private RoomState(RoomState other)
     {
@@ -39,7 +47,44 @@ public class RoomState
         {
             nextState.FlowerState = FlowerState.Dry;
         }
+        switch ( ElectricityBillState )
+        {
+            case ElectricityBillState.InTrashBin:
+                nextState.ElectricityBillState = ElectricityBillState.TakenOutOfTrash;
+                break;
+            case ElectricityBillState.TakenOutOfTrash:
+                nextState.ElectricityBillState = ElectricityBillState.NoElectricity;
+                break;
+        }
+        switch ( CashState )
+        {
+            case CashState.InTrashBin:
+                nextState.CashState = CashState.TakenOutOfTrash;
+                break;
+        }
         return nextState;
+    }
+
+    public bool WaterPlant()
+    {
+        if ( FlowerState == FlowerState.AliveNotWatered || FlowerState == FlowerState.AliveWatered )
+        {
+            FlowerState = FlowerState.AliveWatered;
+            // TODO: Play sound?
+            return true;
+        }
+        return false;
+    }
+
+    public bool PayElectricityBill()
+    {
+        if ( ElectricityBillState == ElectricityBillState.OnTable )
+        {
+            ElectricityBillState = ElectricityBillState.Paid;
+            // TODO: Play sound?
+            return true;
+        }
+        return false;
     }
     
 }
