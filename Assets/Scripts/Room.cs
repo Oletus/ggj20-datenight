@@ -10,7 +10,7 @@ public class Room : MonoBehaviour
 
     public void ApplyState(RoomState roomState)
     {
-        this.Flower.SetState(roomState.FlowerState);
-        this.ElectricityBill.SetState(roomState.ElectricityBillState);
+        this.Flower?.SetState(roomState.FlowerState);
+        this.ElectricityBill?.SetState(roomState.ElectricityBillState);
     }
 }
