@@ -135,7 +135,7 @@ public class Inventory : MonoBehaviour
                 // pick up the item if no item is currently picked up
                 if (CurrentPickedObject == null && hitObject.InteractionMode != InteractionMode.None)
                 {
-                    if (hitObject.InteractionMode == InteractionMode.Clicking)
+                    if (hitObject.InteractionMode == InteractionMode.Clicking || hitObject.InteractionMode == InteractionMode.TargetForPickedObjects)
                     {
                         this.OnClickItem(hitObject, RoomGenerator.Instance.GetRoomStateByRoom(hitObject.ParentRoom));
                     }
@@ -169,7 +169,45 @@ public class Inventory : MonoBehaviour
         {
             case StatefulGameObjectId.Phone:
                 return roomState.CallPlumber();
+            case StatefulGameObjectId.Flower:
+                switch(roomState.FlowerState)
+                {
+                    case FlowerState.Dead:
+                        GuideText.Instance.SetText("The flower is dead...");
+                        break;
 
+                    case FlowerState.Lack:
+                        GuideText.Instance.SetText("The flower is dying...");
+                        break;
+                    case FlowerState.Alive:
+                        GuideText.Instance.SetText("The flower is alive and well");
+                        break;
+                }
+                break;
+            case StatefulGameObjectId.Tap:
+                switch(roomState.WaterPipeState)
+                {
+                    case WaterPipeState.PipeBroken:
+                    case WaterPipeState.PlumberFixing:
+                        GuideText.Instance.SetText("The tap doesn't seem to be working..");
+                        break;
+                    case WaterPipeState.Fixed:
+                        GuideText.Instance.SetText("The tap is working!");
+                        break;
+                }
+                break;
+            case StatefulGameObjectId.WaterPipe:
+                switch (roomState.WaterPipeState)
+                {
+                    case WaterPipeState.PipeBroken:
+                    case WaterPipeState.PlumberFixing:
+                        GuideText.Instance.SetText("The water pipe is broken");
+                        break;
+                    case WaterPipeState.Fixed:
+                        GuideText.Instance.SetText("The water is running again!");
+                        break;
+                }
+                break;
         }
 
         return false;
@@ -202,7 +240,7 @@ public class Inventory : MonoBehaviour
                     {
                         return () =>
                         {
-                            roomState.WaterPlant(); return false;
+                            roomState.WaterPlant(); GuideText.Instance.SetText("You watered the plant"); return false;
                         };
                     }
                     break;
@@ -212,13 +250,13 @@ public class Inventory : MonoBehaviour
                     {
                         return () =>
                         {
-                            GuideText.Instance.SetText("You filled the watering can");
                             if(roomState.FillWateringCan())
                             {
                                 var filledCan = item.GetComponentInParent<StatefulGameObject>().GetStateObject("Filled");
                                 if (filledCan != null)
                                 {
                                      this.CurrentPickedObject = filledCan.GetComponentInChildren<InteractableObject>();
+                                    GuideText.Instance.SetText("You filled the watering can");
                                 }
                             }
                             return false;
@@ -230,14 +268,6 @@ public class Inventory : MonoBehaviour
                     }
 
                     break;
-            }
-        }
-        else if(item.Id == StatefulGameObjectId.Flower)
-        {
-            switch(target.Id)
-            {
-                case StatefulGameObjectId.Flower:
-                    return () => { GuideText.Instance.SetText("You tried putting a flower on a flower"); return false; };
             }
         }
          else if(item.Id == StatefulGameObjectId.Tape)

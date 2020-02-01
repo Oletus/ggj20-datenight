@@ -86,7 +86,7 @@ public class RoomState
                 {
                     if(_daysPlantHasBeenAlive == 0)
                     {
-                        _daysPlantHasBeenAlive++;
+                        nextState._daysPlantHasBeenAlive++;
                     }
                     else
                     {
@@ -134,6 +134,7 @@ public class RoomState
         {
             FlowerState = FlowerState.Alive;
             _plantWatered = true;
+            _daysPlantHasBeenAlive = 0;
             // TODO: Play sound?
             this.StateChanged();
             return true;
@@ -191,6 +192,7 @@ public class RoomState
         {
             WaterPipeState = WaterPipeState.Fixed;
             this.StateChanged();
+            GuideText.Instance.SetText("You fixed the pipe");
             return true;
         }
 
