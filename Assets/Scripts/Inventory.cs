@@ -127,7 +127,7 @@ public class Inventory : MonoBehaviour
                     }
                 }
                 // try to use the picked object on another item
-                else
+                else if (CurrentPickedObject != null)
                 {
                     var useItemAction = TryGetUseItemAction(CurrentPickedObject, hitObject, RoomGenerator.Instance.GetRoomStateByRoom(hitObject.ParentRoom));
                     if (useItemAction != null)
