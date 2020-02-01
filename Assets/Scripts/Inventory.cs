@@ -7,7 +7,26 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
     private Vector3? _returnCurrentPickedObjectPosition = null;
-    private StatefulGameObject CurrentPickedObject;
+    private StatefulGameObject _CurrentPickedObject;
+    private StatefulGameObject CurrentPickedObject
+    {
+        get
+        {
+            return _CurrentPickedObject;
+        }
+        set
+        {
+            if (_CurrentPickedObject == value)
+            {
+                return;
+            }
+            _CurrentPickedObject = value;
+            if (_CurrentPickedObject)
+            {
+                _CurrentPickedObject.OnPick();
+            }
+        }
+    }
     private Pointer CurrentPointer;
 
     [SerializeField] private Camera PickingCamera;

@@ -143,6 +143,16 @@ public class StatefulGameObject : MonoBehaviour
         }
     }
 
+    private float PickedZ;
+
+    public void OnPick()
+    {
+        if ( ActiveObject != null )
+        {
+            PickedZ = ActiveObject.transform.position.z;
+        }
+    }
+
     public void PositionAsPicked(Camera pickingCamera, Pointer pointer)
     {
         if ( ActiveObject != null )
