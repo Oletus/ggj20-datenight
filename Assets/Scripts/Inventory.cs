@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
+    [SerializeField] private UnityEngine.UI.Button PutBackButton;
+
     private InteractableObject _CurrentPickedObject;
     private InteractableObject CurrentPickedObject
     {
@@ -19,10 +21,18 @@ public class Inventory : MonoBehaviour
             {
                 return;
             }
+            if (_CurrentPickedObject)
+            {
+                PutBackButton.gameObject.SetActive(false);
+            }
             _CurrentPickedObject = value;
             if (_CurrentPickedObject)
             {
                 _CurrentPickedObject.OnPick();
+                PutBackButton.gameObject.SetActive(true);
+                Vector2 viewportPos = PickingCamera.WorldToViewportPoint(_CurrentPickedObject.PosOnPick);
+                PutBackButton.GetComponent<RectTransform>().anchorMax = viewportPos;
+                PutBackButton.GetComponent<RectTransform>().anchorMin = viewportPos;
             }
         }
     }
@@ -55,6 +65,21 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    private void PutBackObject()
+    {
+        if ( CurrentPickedObject != null )
+        {
+            CurrentPickedObject.PutBack();
+
+        }
+        this.CurrentPickedObject = null;
+    }
+
+    private void Awake()
+    {
+        PutBackButton.onClick.AddListener(PutBackObject);
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -67,12 +92,7 @@ public class Inventory : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if( CurrentPickedObject != null)
-            {
-                CurrentPickedObject.ResetPosition();
-
-            }
-            this.CurrentPickedObject = null;
+            PutBackObject();
         }
 
         this.UpdateHover();
