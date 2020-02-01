@@ -177,7 +177,31 @@ public class Inventory : MonoBehaviour
             switch(target.Id)
             {
                 case StatefulGameObjectId.Flower:
-                    return () => roomState.WaterPlant();
+                    if (roomState.WaterCanState == WaterCanState.Filled)
+                    {
+                        return () => roomState.WaterPlant();
+                    }
+                    break;
+
+                case StatefulGameObjectId.Tap:
+                    if (roomState.WaterPipeState == WaterPipeState.Fixed)
+                    {
+                        return () =>
+                        {
+                            GuideText.Instance.SetText("You filled the watering can");
+                            if(roomState.FillWateringCan())
+                            {
+                               // this.CurrentPickedObject = hitobj
+                            }
+                            return false;
+                        };
+                    }
+                    else
+                    {
+                        return () => { GuideText.Instance.SetText("The tap doesnt work because the pipe is broken"); return false; };
+                    }
+
+                    break;
             }
         }
         else if(item.Id == StatefulGameObjectId.Flower)
@@ -202,6 +226,7 @@ public class Inventory : MonoBehaviour
             }
         }
 
-        return null;
+
+        return () => { GuideText.Instance.SetText("Nothing happens..."); return false; };
     }
 }
