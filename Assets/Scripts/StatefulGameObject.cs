@@ -58,20 +58,17 @@ public class StatefulGameObject : MonoBehaviour
 
     private void Update()
     {
-        if ( ActiveObject != null )
+        Renderer[] renderers = GetComponentsInChildren<Renderer>(false);
+        foreach ( Renderer r in renderers )
         {
-            Renderer[] renderers = ActiveObject.GetComponentsInChildren<Renderer>();
-            foreach ( Renderer r in renderers )
+            if ( Hilighted )
             {
-                if ( Hilighted )
-                {
-                    r.material.SetColor("_EmissionColor", Color.white*(Mathf.Sin((Time.time - LastHilightedTime) * HILIGHT_PULSE_SPEED) * 0.5f + 0.5f) * 0.8f);
-                    r.material.EnableKeyword("_EMISSION");
-                }
-                else
-                {
-                    r.material.SetColor("_EmissionColor", Color.black);
-                }
+                r.material.SetColor("_EmissionColor", Color.white*(Mathf.Sin((Time.time - LastHilightedTime) * HILIGHT_PULSE_SPEED) * 0.5f + 0.5f) * 0.8f);
+                r.material.EnableKeyword("_EMISSION");
+            }
+            else
+            {
+                r.material.SetColor("_EmissionColor", Color.black);
             }
         }
     }
