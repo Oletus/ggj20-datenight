@@ -8,6 +8,10 @@ public class Inventory : MonoBehaviour
 {
     [SerializeField] private UnityEngine.UI.Button PutBackButton;
 
+    [SerializeField] private CameraEngine CameraSystem;
+
+    private int PickedFromRoomNumber = -1;
+
     private InteractableObject _CurrentPickedObject;
     private InteractableObject CurrentPickedObject
     {
@@ -21,18 +25,14 @@ public class Inventory : MonoBehaviour
             {
                 return;
             }
-            if (_CurrentPickedObject)
-            {
-                PutBackButton.gameObject.SetActive(false);
-            }
             _CurrentPickedObject = value;
             if (_CurrentPickedObject)
             {
                 _CurrentPickedObject.OnPick();
-                PutBackButton.gameObject.SetActive(true);
                 Vector2 viewportPos = PickingCamera.WorldToViewportPoint(_CurrentPickedObject.PosOnPick);
                 PutBackButton.GetComponent<RectTransform>().anchorMax = viewportPos;
                 PutBackButton.GetComponent<RectTransform>().anchorMin = viewportPos;
+                PickedFromRoomNumber = CameraSystem.RoomNumber;
             }
         }
     }
@@ -96,6 +96,8 @@ public class Inventory : MonoBehaviour
         }
 
         this.UpdateHover();
+
+        PutBackButton.gameObject.SetActive(CurrentPickedObject != null && CameraSystem.RoomNumber == PickedFromRoomNumber);
     }
 
     private InteractableObject GetObjectFromRay(Ray ray)
