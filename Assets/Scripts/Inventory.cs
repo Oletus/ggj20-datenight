@@ -65,6 +65,21 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    private void PutBackObject()
+    {
+        if ( CurrentPickedObject != null )
+        {
+            CurrentPickedObject.PutBack();
+
+        }
+        this.CurrentPickedObject = null;
+    }
+
+    private void Awake()
+    {
+        PutBackButton.onClick.AddListener(PutBackObject);
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -77,12 +92,7 @@ public class Inventory : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if( CurrentPickedObject != null)
-            {
-                CurrentPickedObject.PutBack();
-
-            }
-            this.CurrentPickedObject = null;
+            PutBackObject();
         }
 
         this.UpdateHover();
