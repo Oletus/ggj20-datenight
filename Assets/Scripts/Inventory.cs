@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
+    private Vector3? _returnCurrentPickedObjectPosition = null;
     private StatefulGameObject CurrentPickedObject;
     private Pointer CurrentPointer;
 
@@ -48,7 +49,12 @@ public class Inventory : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            // TODO: reset to the original position and scene
+            if(_returnCurrentPickedObjectPosition.HasValue)
+            {
+                CurrentPickedObject.ResetPosition(_returnCurrentPickedObjectPosition.Value);
+                _returnCurrentPickedObjectPosition = null;
+
+            }
             this.CurrentPickedObject = null;
         }
 
@@ -94,6 +100,7 @@ public class Inventory : MonoBehaviour
                     {
                         CurrentPickedObject = hitObject;
                         CurrentPointer = pointerDown;
+                        _returnCurrentPickedObjectPosition = CurrentPickedObject.transform.position;
                     }
                 }
                 // try to use the picked object on another item
