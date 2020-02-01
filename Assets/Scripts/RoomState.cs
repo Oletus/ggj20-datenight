@@ -57,6 +57,7 @@ public class RoomState
         FlowerState = other.FlowerState;
         ElectricityBillState = other.ElectricityBillState;
         CashState = other.CashState;
+        WaterPipeState = other.WaterPipeState;
         _daysSincePlumberCalled = other._daysSincePlumberCalled;
         _plumberCalled = other._plumberCalled;
     }
@@ -141,5 +142,16 @@ public class RoomState
 
         return false;
     }
-    
+
+    public bool FixPipe()
+    {
+        if(WaterPipeState == WaterPipeState.PipeBroken)
+        {
+            WaterPipeState = WaterPipeState.Fixed;
+            this.StateChanged();
+            return true;
+        }
+
+        return false;
+    }
 }
