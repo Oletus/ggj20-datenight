@@ -293,8 +293,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1374f0a76276448d08fcd32f7d3759ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _Id: 
   States:
-  - State: alive
-    Object: {fileID: 5082785652251583014}
+  - State: alivenotwatered
+    ActiveObject: {fileID: 5082785652251583014}
+  - State: alivewatered
+    ActiveObject: {fileID: 5082785652251583014}
   - State: dry
-    Object: {fileID: 5082785651631363814}
+    ActiveObject: {fileID: 5082785651631363814}
+  IdsThisCanBeUsedOn: []

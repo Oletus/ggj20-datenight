@@ -46,6 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Flower: {fileID: 8672511832907373045}
   ElectricityBill: {fileID: 0}
+  RoomIndex: 0
 --- !u!1001 &958337613524186562
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -112,6 +113,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 0.8978272
+      objectReference: {fileID: 0}
+    - target: {fileID: 8437002880880340023, guid: 10aa2b54f31b44949a7d287a24008f98,
+        type: 3}
+      propertyPath: States.Array.data[0].State
+      value: alivenotwatered
       objectReference: {fileID: 0}
     - target: {fileID: 9158293131197820884, guid: 10aa2b54f31b44949a7d287a24008f98,
         type: 3}

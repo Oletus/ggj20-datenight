@@ -27,8 +27,9 @@ public enum CashState
     Used
 }
 
+public delegate void RoomStateChanged();
 public class RoomState
-{
+{ 
     public FlowerState FlowerState { get; private set; }
     public ElectricityBillState ElectricityBillState { get; private set; }
     public CashState CashState { get; private set; }
@@ -46,6 +47,8 @@ public class RoomState
         ElectricityBillState = other.ElectricityBillState;
         CashState = other.CashState;
     }
+
+    public event RoomStateChanged StateChanged;
 
     public RoomState GenerateNextState()
     {
@@ -79,6 +82,7 @@ public class RoomState
         {
             FlowerState = FlowerState.AliveWatered;
             // TODO: Play sound?
+            this.StateChanged();
             return true;
         }
         return false;
@@ -90,6 +94,7 @@ public class RoomState
         {
             ElectricityBillState = ElectricityBillState.Paid;
             // TODO: Play sound?
+            this.StateChanged();
             return true;
         }
         return false;
