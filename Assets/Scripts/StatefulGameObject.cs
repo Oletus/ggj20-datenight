@@ -55,6 +55,7 @@ public class StatefulGameObject : MonoBehaviour
                 if ( Hilighted )
                 {
                     r.material.SetColor("_EmissionColor", Color.white);
+                    r.material.EnableKeyword("_EMISSION");
                 }
                 else
                 {
