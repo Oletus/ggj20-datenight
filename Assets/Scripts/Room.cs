@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 
-[RequireComponent(typeof(StatefulFlower), typeof(StatefulElectricityBill))]
+#pragma warning disable 0649
+
 public class Room : MonoBehaviour
 {
-    public StatefulFlower Flower { get { return this.GetComponent<StatefulFlower>(); } }
-    public StatefulElectricityBill ElectricityBill { get { return this.GetComponent<StatefulElectricityBill>(); } }
+    [SerializeField] private StatefulGameObject Flower;
+    [SerializeField] private StatefulGameObject ElectricityBill;
 
     public void ApplyState(RoomState roomState)
     {

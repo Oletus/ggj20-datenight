@@ -8,18 +8,17 @@ public class StateObjectPair
     [SerializeField] public GameObject Object; // TODO: do we actually want this to be a list?
 }
 
-public abstract class StatefulGameObject<T> : MonoBehaviour
-    where T : System.Enum
+public class StatefulGameObject : MonoBehaviour
 {
     // TODO: Add NaughtyAttributes library
     //[ReorderableList]
     [SerializeField] public List<StateObjectPair> States;
 
-    public void SetState(T activeState)
+    public void SetState<T>(T activeState) where T : System.Enum
     {
         foreach(StateObjectPair pair in States)
         {
-            pair.Object.SetActive(pair.State == activeState.ToString());
+            pair.Object.SetActive(pair.State.ToLower().Trim() == activeState.ToString().ToLower());
         }
     }
 }
