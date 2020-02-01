@@ -128,4 +128,9 @@ public class StatefulGameObject : MonoBehaviour
             ActiveObject.transform.position = ray.origin + ray.direction * 2.5f;
         }
     }
+
+    public void ResetPosition(Vector3 pos)
+    {
+        this.ActiveObject.transform.position = pos;
+    }
 }
