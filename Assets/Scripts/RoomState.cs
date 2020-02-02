@@ -245,6 +245,7 @@ public class RoomState
             _plantWatered = true;
             _daysPlantHasBeenAlive = 0;
             DateNightGameState.Instance.FlowerWateredIndex = this.RoomIndex;
+            GuideText.Instance.SetText("Plant looks a lot less thirsty now.");
             // TODO: Play sound?
             this.StateChanged();
             return true;
@@ -272,7 +273,7 @@ public class RoomState
             {
                 Room.PlaySound("phone-dial");
                 _plumberCalled = true;
-                GuideText.Instance.SetText("\"Hello? Yes, this is plumber. You need to fix a leaking pipe? Okay, I will come in three days from  now\"");
+                GuideText.Instance.SetText("\"Hi, Fabio from Plumber Brothers! Leaking pipe? Okay, I will come in 3 days.\"");
                 this.StateChanged();
                 return true;
             }
@@ -292,6 +293,7 @@ public class RoomState
         {
             Room.PlaySound("water-tap");
             WaterCanState = WaterCanState.Filled;
+            GuideText.Instance.SetText("Watering can filled.");
             this.StateChanged();
             return true;
         }
@@ -305,7 +307,7 @@ public class RoomState
         {
             Room.PlaySound("fix-pipe");
             WaterPipeState = WaterPipeState.Fixed;
-            GuideText.Instance.SetText("You fixed the pipe");
+            GuideText.Instance.SetText("Nothing a bit of duct tape can't fix.");
             DateNightGameState.Instance.PipeFixedIndex = this.RoomIndex;
             this.StateChanged();
             return true;
@@ -335,7 +337,7 @@ public class RoomState
             Room.PlaySound("add-ball-dog");
             DogState = DogState.Happy;
             DateNightGameState.Instance.DogBallIndex = this.RoomIndex;
-            GuideText.Instance.SetText("The dog is happy with the ball!");
+            GuideText.Instance.SetText("\"*Happy barking*\"");
             this.StateChanged();
             return true;
         }
