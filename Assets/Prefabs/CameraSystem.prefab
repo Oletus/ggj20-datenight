@@ -411,6 +411,11 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7138284167600750776, guid: f097605cfca0da845aaf49958556b5b7,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -195.70001
+      objectReference: {fileID: 0}
     - target: {fileID: 7284706235431291865, guid: f097605cfca0da845aaf49958556b5b7,
         type: 3}
       propertyPath: m_SizeDelta.y
@@ -461,6 +466,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 8765222583534995780, guid: f097605cfca0da845aaf49958556b5b7,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1032323659}
     - target: {fileID: 8765222583534995781, guid: f097605cfca0da845aaf49958556b5b7,
         type: 3}
       propertyPath: m_LocalPosition.x
