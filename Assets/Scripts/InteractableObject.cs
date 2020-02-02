@@ -30,24 +30,31 @@ public class InteractableObject : MonoBehaviour
 
     private const float HILIGHT_PULSE_SPEED = 4.0f;
 
+    public static float LastCommonPulseTime = 0.0f;
+
     private void Update()
     {
         Renderer[] renderers = GetComponentsInChildren<Renderer>(false);
         foreach ( Renderer r in renderers )
         {
-            if ( Hilighted )
+            foreach ( Material mat in r.materials )
             {
-                foreach ( Material mat in r.materials )
+                mat.EnableKeyword("_EMISSION");
+                if ( Hilighted )
                 {
                     mat.SetColor("_EmissionColor", Color.white * (Mathf.Sin((Time.time - LastHilightedTime) * HILIGHT_PULSE_SPEED) * 0.5f + 0.5f) * 0.8f);
-                    mat.EnableKeyword("_EMISSION");
                 }
-            }
-            else
-            {
-                foreach ( Material mat in r.materials )
+                else
                 {
-                    mat.SetColor("_EmissionColor", Color.black);
+                    if ( Time.time > LastCommonPulseTime && Time.time < LastCommonPulseTime + Mathf.PI / HILIGHT_PULSE_SPEED )
+                    {
+
+                        mat.SetColor("_EmissionColor", Color.white * (Mathf.Sin((Time.time - LastCommonPulseTime) * HILIGHT_PULSE_SPEED)) * 0.8f);
+                    }
+                    else
+                    {
+                        mat.SetColor("_EmissionColor", Color.black);
+                    }
                 }
             }
         }

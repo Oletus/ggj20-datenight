@@ -46,6 +46,7 @@ public class CameraEngine : MonoBehaviour
                 WhiteFlash.CrossFadeAlpha(0.0f, 0.2f, false);
                 TimeMachineSound.Play();
             }
+            RoomGenerator.ResetCommonInteractablePulse();
         }
         Initialized = true;
         RoomNumber = roomNumber;

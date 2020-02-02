@@ -17,6 +17,22 @@ public class RoomGenerator : MonoBehaviour
     {
         Instance = this;
         GenerateInitialRoomStates();
+        ResetCommonInteractablePulse();
+    }
+
+    public static void ResetCommonInteractablePulse()
+    {
+        InteractableObject.LastCommonPulseTime = Time.time + COMMON_PULSE_INTERVAL * 0.25f;
+    }
+
+    private const float COMMON_PULSE_INTERVAL = 20.0f;
+
+    private void Update()
+    {
+        if (Time.time > InteractableObject.LastCommonPulseTime + COMMON_PULSE_INTERVAL * 0.5f)
+        {
+            InteractableObject.LastCommonPulseTime += COMMON_PULSE_INTERVAL;
+        }
     }
 
     private void GenerateInitialRoomStates()
