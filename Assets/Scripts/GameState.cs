@@ -17,4 +17,6 @@ public class DateNightGameState
 
     public int? FlowerWateredIndex { get; set; } = null;
     public int? PipeFixedIndex { get; set; } = null;
+    public int? WindowOpenedIndex { get; set; } = null;
+    public int? DogBallIndex { get; set; } = null;
 }

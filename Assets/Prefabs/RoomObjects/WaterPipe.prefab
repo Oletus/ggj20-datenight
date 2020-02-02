@@ -79,7 +79,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1374f0a76276448d08fcd32f7d3759ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Id: 6
+  _Id: 3
   States:
   - _State: PipeBroken
     ActiveObject: {fileID: 8123223876653296687}
@@ -170,7 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c30a5e80ee13e74f8a3187f6ab1decb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Id: 7
+  _Id: 4
   _InteractionMode: 1
   PutBackIndicator: {fileID: 0}
   ScaleWhenPicked: 1
@@ -217,7 +217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c30a5e80ee13e74f8a3187f6ab1decb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Id: 6
+  _Id: 3
   _InteractionMode: 3
   PutBackIndicator: {fileID: 0}
   ScaleWhenPicked: 1
