@@ -20,7 +20,7 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.496351, g: 0.53844786, b: 0.6226415, a: 1}
+  m_AmbientSkyColor: {r: 0.38808295, g: 0.43095395, b: 0.4811321, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
@@ -609,21 +609,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 331459115175343011, guid: e2bcb51ef8aba814e856b43d89f513a2,
-        type: 3}
-      propertyPath: _Id
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5080402921742708519, guid: e2bcb51ef8aba814e856b43d89f513a2,
-        type: 3}
-      propertyPath: _Id
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5187912851409011827, guid: e2bcb51ef8aba814e856b43d89f513a2,
-        type: 3}
-      propertyPath: _Id
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 5459801347103995044, guid: e2bcb51ef8aba814e856b43d89f513a2,
         type: 3}
       propertyPath: m_Name
@@ -764,16 +749,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3391134937790135406, guid: de76f78a381082c448cd70965ee68261,
-        type: 3}
-      propertyPath: m_CullingMask.m_Bits
-      value: 55
-      objectReference: {fileID: 0}
-    - target: {fileID: 3391134938527668307, guid: de76f78a381082c448cd70965ee68261,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de76f78a381082c448cd70965ee68261, type: 3}

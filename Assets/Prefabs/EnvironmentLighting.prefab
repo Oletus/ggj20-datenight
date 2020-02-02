@@ -49,7 +49,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3391134937790135407
 Transform:
   m_ObjectHideFlags: 0
@@ -113,7 +113,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 55
   m_RenderingLayerMask: 1
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
@@ -141,7 +141,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3391134938527668308
 Transform:
   m_ObjectHideFlags: 0
@@ -149,13 +149,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3391134938527668307}
-  m_LocalRotation: {x: 0.42101005, y: 0.07898997, z: -0.03683362, w: 0.90285903}
+  m_LocalRotation: {x: 0.38019088, y: -0.19734249, z: -0.5855823, w: 0.688189}
   m_LocalPosition: {x: 0, y: 3, z: -5.67}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3391134937261765681}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 50.000004, y: 10, z: 0}
+  m_LocalEulerAnglesHint: {x: 16.988, y: -48.555004, z: -88.496}
 --- !u!108 &3391134938527668309
 Light:
   m_ObjectHideFlags: 0
@@ -167,8 +167,8 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 0.5283019, g: 0.51559883, b: 0.48095408, a: 1}
-  m_Intensity: 1
+  m_Color: {r: 0.5188679, g: 0.47463277, b: 0.40873086, a: 1}
+  m_Intensity: 0.37
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -228,7 +228,7 @@ GameObject:
   - component: {fileID: 4432524550209843678}
   - component: {fileID: 4552311347736781193}
   m_Layer: 0
-  m_Name: Directional Light
+  m_Name: BG Directional Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -260,7 +260,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.5
+  m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
