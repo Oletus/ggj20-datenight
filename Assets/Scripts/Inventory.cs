@@ -234,7 +234,6 @@ public class Inventory : MonoBehaviour
                         GuideText.Instance.SetText("The dog is happy!");
                         break;
                     case DogState.Sleeping:
-                        roomState.OpenWindow();
                         GuideText.Instance.SetText("The dog is sleeping");
                         break;
                 }
