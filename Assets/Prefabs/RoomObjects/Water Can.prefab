@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Id: 1
-  _InteractionMode: 2
+  _InteractionMode: 1
   PutBackIndicator: {fileID: 0}
   ScaleWhenPicked: 1
 --- !u!1 &5343825616101879887
