@@ -33,6 +33,7 @@ public enum StatefulGameObjectId
     Window,
     Dog,
     Ball,
+    Door
 }
 
 public class StatefulGameObject : MonoBehaviour

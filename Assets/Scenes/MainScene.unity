@@ -33,7 +33,7 @@ RenderSettings:
   m_HaloTexture: {fileID: 0}
   m_SpotCookie: {fileID: 10001, guid: 0000000000000000e000000000000000, type: 0}
   m_DefaultReflectionMode: 0
-  m_DefaultReflectionResolution: 128
+  m_DefaultReflectionResolution: 64
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
@@ -51,7 +51,7 @@ LightmapSettings:
     m_IndirectOutputScale: 1
     m_AlbedoBoost: 1
     m_EnvironmentLightingMode: 0
-    m_EnableBakedLightmaps: 1
+    m_EnableBakedLightmaps: 0
     m_EnableRealtimeLightmaps: 0
   m_LightmapEditorSettings:
     serializedVersion: 12
@@ -128,16 +128,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 541186686250471436, guid: 4b55df0392beaae4b8748174bc8dabb0,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 14.099998
-      objectReference: {fileID: 0}
-    - target: {fileID: 1163890795767199890, guid: 4b55df0392beaae4b8748174bc8dabb0,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1396165070698624331, guid: 4b55df0392beaae4b8748174bc8dabb0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -197,36 +187,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CameraSystem
-      objectReference: {fileID: 0}
-    - target: {fileID: 2070576959156356169, guid: 4b55df0392beaae4b8748174bc8dabb0,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2223920779696941324, guid: 4b55df0392beaae4b8748174bc8dabb0,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3834769882967660953, guid: 4b55df0392beaae4b8748174bc8dabb0,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4669354583976995016, guid: 4b55df0392beaae4b8748174bc8dabb0,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 16.400002
-      objectReference: {fileID: 0}
-    - target: {fileID: 5905574299639524645, guid: 4b55df0392beaae4b8748174bc8dabb0,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 16.400002
-      objectReference: {fileID: 0}
-    - target: {fileID: 7046436367211854236, guid: 4b55df0392beaae4b8748174bc8dabb0,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b55df0392beaae4b8748174bc8dabb0, type: 3}
@@ -749,6 +709,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3391134937790135405, guid: de76f78a381082c448cd70965ee68261,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3391134938527668307, guid: de76f78a381082c448cd70965ee68261,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3391134938527668309, guid: de76f78a381082c448cd70965ee68261,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.38679248
+      objectReference: {fileID: 0}
+    - target: {fileID: 3391134938527668309, guid: de76f78a381082c448cd70965ee68261,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.37895846
+      objectReference: {fileID: 0}
+    - target: {fileID: 3391134938527668309, guid: de76f78a381082c448cd70965ee68261,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.24995552
+      objectReference: {fileID: 0}
+    - target: {fileID: 3391134938527668309, guid: de76f78a381082c448cd70965ee68261,
+        type: 3}
+      propertyPath: m_Intensity
+      value: 0.25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de76f78a381082c448cd70965ee68261, type: 3}

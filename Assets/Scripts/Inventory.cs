@@ -239,6 +239,27 @@ public class Inventory : MonoBehaviour
                         break;
                 }
                 break;
+
+            case StatefulGameObjectId.Door:
+                var todayRoomstate = RoomGenerator.Instance.GetRoomStateByRoomIndex(3);
+                if(todayRoomstate.FlowerState != FlowerState.Alive)
+                {
+                    FindObjectOfType<EndingUI>().GetEnding(0);
+                }
+                else if (todayRoomstate.WindowState == WindowState.Broken)
+                {
+                    FindObjectOfType<EndingUI>().GetEnding(2);
+                }
+                else if (todayRoomstate.CouchState != CouchState.Ok)
+                {
+                    FindObjectOfType<EndingUI>().GetEnding(1);
+                }
+                else
+                {
+                    FindObjectOfType<EndingUI>().GetEnding(3);
+                }
+                break;
+
         }
 
         return false;

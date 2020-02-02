@@ -19,4 +19,8 @@ public class DateNightGameState
     public int? PipeFixedIndex { get; set; } = null;
     public int? WindowOpenedIndex { get; set; } = null;
     public int? DogBallIndex { get; set; } = null;
+
+    public static void Reset()  {
+        _instance = new DateNightGameState();
+    }
 }

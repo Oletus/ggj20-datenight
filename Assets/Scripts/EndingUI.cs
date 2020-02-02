@@ -17,8 +17,9 @@ public class EndingUI : MonoBehaviour
         Endings[endingNum].SetActive(true);
     }
 
-    public void RestarPuzzle()
+    public void RestartPuzzle()
     {
+        DateNightGameState.Reset();
         SceneManager.LoadScene("MainScene");
     }
 }
