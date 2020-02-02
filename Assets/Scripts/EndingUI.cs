@@ -9,9 +9,10 @@ public class EndingUI : MonoBehaviour
 
     public void GetEnding(int endingNum)
     {
-        if (endingNum > Endings.Length)
+        if (endingNum >= Endings.Length)
         {
             Endings[0].SetActive(true);
+            return;
         }
 
         Endings[endingNum].SetActive(true);
