@@ -328,8 +328,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "You watered the trash. Nothing happened. You watered the trash. Nothing
-    happened. You watered the trash. Nothing happened. \n"
+  m_Text: '
+
+'
 --- !u!114 &6085383189302660551
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1793,13 +1794,13 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 780597391456585946, guid: 91467e8587dceef45a7e70e83764fdf6,
         type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 16.400024
+      propertyPath: m_LocalPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2012278874215746871, guid: 91467e8587dceef45a7e70e83764fdf6,
         type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 16.400024
+      propertyPath: m_LocalPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3289170057015460829, guid: 91467e8587dceef45a7e70e83764fdf6,
         type: 3}
@@ -1808,8 +1809,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5592188828324917278, guid: 91467e8587dceef45a7e70e83764fdf6,
         type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 14.099976
+      propertyPath: m_LocalPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8833308410721922052, guid: 91467e8587dceef45a7e70e83764fdf6,
         type: 3}
