@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1374f0a76276448d08fcd32f7d3759ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Id: 4
+  _Id: 1
   States:
   - _State: FallenDown
     ActiveObject: {fileID: 5343825616101879887}
