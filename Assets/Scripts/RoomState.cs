@@ -231,6 +231,11 @@ public class RoomState
             nextState.WindowState = WindowState.Open;
         }
 
+        if(DateNightGameState.Instance.FilledWaterIndicies.Contains(NextRoomIndex))
+        {
+            nextState.WaterCanState = WaterCanState.Filled;
+        }
+
         
 
         return nextState;
@@ -294,6 +299,7 @@ public class RoomState
             Room.PlaySound("water-tap");
             WaterCanState = WaterCanState.Filled;
             GuideText.Instance.SetText("Watering can filled.");
+            DateNightGameState.Instance.FilledWaterIndicies.Add(this.RoomIndex);
             this.StateChanged();
             return true;
         }

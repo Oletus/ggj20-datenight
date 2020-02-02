@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+
 public class DateNightGameState 
 {
     private static DateNightGameState _instance;
@@ -19,6 +21,7 @@ public class DateNightGameState
     public int? PipeFixedIndex { get; set; } = null;
     public int? WindowOpenedIndex { get; set; } = null;
     public int? DogBallIndex { get; set; } = null;
+    public HashSet<int> FilledWaterIndicies { get; private set; } = new HashSet<int>();
 
     public static void Reset()  {
         _instance = new DateNightGameState();
