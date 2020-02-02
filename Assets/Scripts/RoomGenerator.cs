@@ -58,6 +58,11 @@ public class RoomGenerator : MonoBehaviour
         return roomIndex >= 0 ? roomStates[roomIndex] : null;
     }
 
+    public RoomState GetRoomStateByRoomIndex(int index)
+    {
+        return roomStates[index];
+    }
+
     public Room GetRoomByRoomState(RoomState roomState)
     {
         var roomIndex = new List<RoomState>(roomStates).IndexOf(roomState);

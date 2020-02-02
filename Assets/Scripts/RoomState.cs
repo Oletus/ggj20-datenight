@@ -329,6 +329,7 @@ public class RoomState
         {
             DogState = DogState.Happy;
             DateNightGameState.Instance.DogBallIndex = this.RoomIndex;
+            GuideText.Instance.SetText("The dog is happy with the ball!");
             this.StateChanged();
             return true;
         }
