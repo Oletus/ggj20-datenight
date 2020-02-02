@@ -14,6 +14,8 @@ public class GuideText : MonoBehaviour
     {
         this.Text.CrossFadeAlpha(0, 0.5f, true);
         Instance = this;
+
+       SetText("Go go potato time machine, help me fix this mess!");
     }
 
     public void SetText(string text)
