@@ -187,6 +187,8 @@ public class RoomState
             {
                 nextState.CouchState = CouchState.Broken;
             }
+
+            nextState.DogState = DogState.Sleeping;
         }
 
         // 4th day
@@ -200,10 +202,12 @@ public class RoomState
             {
                 nextState.BallState = BallState.OnGround;
             }
+
+            nextState.DogState = DogState.Sleeping;
         }
 
         // second day
-        if (NextRoomIndex == 1)
+        if (NextRoomIndex == 1 && DogState != DogState.Happy)
         {
             nextState.DogState = DogState.Angry;
         }
