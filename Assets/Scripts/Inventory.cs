@@ -224,6 +224,21 @@ public class Inventory : MonoBehaviour
                         break;
                 }
                 break;
+            case StatefulGameObjectId.Dog:
+                switch (roomState.DogState)
+                {
+                    case DogState.Angry:
+                        GuideText.Instance.SetText("The dog is angry");
+                        break;
+                    case DogState.Happy:
+                        GuideText.Instance.SetText("The dog is happy!");
+                        break;
+                    case DogState.Sleeping:
+                        roomState.OpenWindow();
+                        GuideText.Instance.SetText("The dog is sleeping");
+                        break;
+                }
+                break;
         }
 
         return false;

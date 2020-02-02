@@ -74,7 +74,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5907291036819894358}
-  - component: {fileID: 6443975535687158595}
+  - component: {fileID: 6563921338361503351}
   m_Layer: 0
   m_Name: Filled
   m_TagString: Untagged
@@ -97,7 +97,7 @@ Transform:
   m_Father: {fileID: 6264256257437510235}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6443975535687158595
+--- !u!114 &6563921338361503351
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -109,8 +109,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c30a5e80ee13e74f8a3187f6ab1decb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Id: 4
-  _InteractionMode: 1
+  _Id: 1
+  _InteractionMode: 2
   PutBackIndicator: {fileID: 0}
   ScaleWhenPicked: 1
 --- !u!1 &5343825616101879887
@@ -122,7 +122,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4360757873241840307}
-  - component: {fileID: 9135323117598497116}
+  - component: {fileID: 4556793461721749183}
   m_Layer: 0
   m_Name: Fallen
   m_TagString: Untagged
@@ -145,7 +145,7 @@ Transform:
   m_Father: {fileID: 6264256257437510235}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9135323117598497116
+--- !u!114 &4556793461721749183
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -157,7 +157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c30a5e80ee13e74f8a3187f6ab1decb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Id: 4
+  _Id: 1
   _InteractionMode: 1
   PutBackIndicator: {fileID: 0}
   ScaleWhenPicked: 1
