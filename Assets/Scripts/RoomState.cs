@@ -38,6 +38,32 @@ public enum WaterCanState
     Filled,
 }
 
+public enum CouchState
+{
+    Ok,
+    Broken,
+}
+
+public enum DogState
+{
+    Sleeping,
+    Angry,
+    Happy
+}
+
+public enum WindowState
+{
+    Closed,
+    Broken,
+    Open
+}
+
+public enum BallState
+{
+    Hidden,
+    OnGround
+}
+
 public delegate void RoomStateChanged();
 public class RoomState
 { 
@@ -46,11 +72,16 @@ public class RoomState
     public CashState CashState { get; private set; }
     public WaterPipeState WaterPipeState { get; private set; }
     public WaterCanState WaterCanState { get; private set; }
+    public CouchState CouchState { get; private set; }
+    public DogState DogState { get; private set; }
+    public WindowState WindowState { get; private set; }
+    public BallState BallState { get; private set; }
 
     private int _daysSincePlumberCalled = 0;
     private bool _plumberCalled = false;
     private bool _plantWatered = false;
     private int _daysPlantHasBeenAlive = 0;
+    private bool _hasGivenBallToAngryDog = false;
 
 
     //  note: doesn work in constructor
@@ -72,6 +103,10 @@ public class RoomState
         CashState = CashState.OnTable;
         WaterCanState = WaterCanState.FallenDown;
         WaterPipeState = WaterPipeState.PipeBroken;
+        WindowState = WindowState.Closed;
+        BallState = BallState.Hidden;
+        CouchState = CouchState.Ok;
+        DogState = DogState.Sleeping;
     }
 
     private RoomState(RoomState other)
@@ -80,6 +115,10 @@ public class RoomState
         ElectricityBillState = other.ElectricityBillState;
         CashState = other.CashState;
         WaterPipeState = other.WaterPipeState;
+        CouchState = other.CouchState;
+        DogState = other.DogState;
+        WindowState = other.WindowState;
+        BallState = other.BallState;
         _daysSincePlumberCalled = other._daysSincePlumberCalled;
         _plumberCalled = other._plumberCalled;
         _plantWatered = other._plantWatered;
@@ -140,6 +179,35 @@ public class RoomState
 
 
         int NextRoomIndex = this.RoomIndex + 1;
+
+        // third day
+        if(NextRoomIndex ==  2)
+        {
+            if(DogState == DogState.Angry && !_hasGivenBallToAngryDog)
+            {
+                nextState.CouchState = CouchState.Broken;
+            }
+        }
+
+        // 4th day
+        if(NextRoomIndex == 3)
+        {
+            if (WindowState == WindowState.Closed)
+            {
+                nextState.WindowState = WindowState.Broken;
+            }
+            else if(WindowState == WindowState.Open)
+            {
+                nextState.BallState = BallState.OnGround;
+            }
+        }
+
+        // second day
+        if (NextRoomIndex == 1)
+        {
+            nextState.DogState = DogState.Angry;
+        }
+
         if (DateNightGameState.Instance.PipeFixedIndex == NextRoomIndex)
         {
             nextState._plumberCalled = false;
@@ -153,6 +221,13 @@ public class RoomState
             nextState._daysPlantHasBeenAlive = 0;
             nextState._plantWatered = true;
         }
+
+        if (DateNightGameState.Instance.WindowOpenedIndex == NextRoomIndex)
+        {
+            nextState.WindowState = WindowState.Open;
+        }
+
+        
 
         return nextState;
     }
@@ -230,4 +305,31 @@ public class RoomState
 
         return false;
     }
+
+    public bool OpenWindow()
+    {
+        if(WindowState == WindowState.Closed)
+        {
+            WindowState = WindowState.Open;
+            DateNightGameState.Instance.WindowOpenedIndex = this.RoomIndex;
+            this.StateChanged();
+            return true;
+        }
+
+        return false;
+    }
+
+    public bool AddBallToDog()
+    {
+        if (DogState == DogState.Angry)
+        {
+            DogState = DogState.Happy;
+            DateNightGameState.Instance.DogBallIndex = this.RoomIndex;
+            this.StateChanged();
+            return true;
+        }
+
+        return false;
+    }
+    
 }

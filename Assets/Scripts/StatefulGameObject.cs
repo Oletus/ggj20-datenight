@@ -21,14 +21,18 @@ public class StateDefinition
 public enum StatefulGameObjectId
 {
     Flower,
-    ElectricityBill,
-    Money,
-    Trash,
+   // ElectricityBill,
+    //Money,
+    //Trash,
     WateringCan,
     Phone,
     WaterPipe,
     Tape,
-    Tap
+    Tap,
+    Couch,
+    Window,
+    Dog,
+    Ball,
 }
 
 public class StatefulGameObject : MonoBehaviour

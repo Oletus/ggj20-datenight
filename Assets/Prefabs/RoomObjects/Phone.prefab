@@ -44,8 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c30a5e80ee13e74f8a3187f6ab1decb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Id: 5
+  _Id: 2
   _InteractionMode: 2
+  PutBackIndicator: {fileID: 0}
+  ScaleWhenPicked: 1
 --- !u!64 &2456830875461089620
 MeshCollider:
   m_ObjectHideFlags: 0

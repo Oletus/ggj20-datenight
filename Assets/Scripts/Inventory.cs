@@ -208,6 +208,22 @@ public class Inventory : MonoBehaviour
                         break;
                 }
                 break;
+
+            case StatefulGameObjectId.Window:
+                switch (roomState.WindowState)
+                {
+                    case WindowState.Broken:
+                        GuideText.Instance.SetText("The window is broken");
+                        break;
+                    case WindowState.Open:
+                        GuideText.Instance.SetText("The window is open");
+                        break;
+                    case WindowState.Closed:
+                        roomState.OpenWindow();
+                        GuideText.Instance.SetText("You opened the window");
+                        break;
+                }
+                break;
         }
 
         return false;
@@ -219,7 +235,7 @@ public class Inventory : MonoBehaviour
         {
             Debug.LogError("ROOM STATE IS NULL IN INVENTORY");
         }
-        
+        /*
         if(item.Id == StatefulGameObjectId.Money)
         {
             switch(target.Id)
@@ -231,7 +247,7 @@ public class Inventory : MonoBehaviour
                     return () => { GuideText.Instance.SetText("You tried putting money in the trash"); return false; };
             }
         }
-        else if(item.Id == StatefulGameObjectId.WateringCan)
+        else */ if(item.Id == StatefulGameObjectId.WateringCan)
         {
             switch(target.Id)
             {
@@ -290,6 +306,27 @@ public class Inventory : MonoBehaviour
                     if(roomState.WaterPipeState == WaterPipeState.PipeBroken)
                     {
                         return () => roomState.FixPipe();
+                    }
+
+                    break;
+            }
+        }
+        else if(item.Id == StatefulGameObjectId.Ball)
+        {
+            switch(target.Id)
+            {
+                case StatefulGameObjectId.Dog:
+                    if(roomState.DogState == DogState.Angry)
+                    {
+                        return () => roomState.AddBallToDog();
+                    }
+                    else if(roomState.DogState == DogState.Sleeping)
+                    {
+                        return () => { GuideText.Instance.SetText("The dog is sleeping, it doesnt want to play with the ball right now"); return false; };
+                    }
+                    else if (roomState.DogState == DogState.Happy)
+                    {
+                        return () => { GuideText.Instance.SetText("The dog is already happy!"); return false; };
                     }
 
                     break;
