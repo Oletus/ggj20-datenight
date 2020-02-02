@@ -52,6 +52,19 @@ public class RoomState
     private bool _plantWatered = false;
     private int _daysPlantHasBeenAlive = 0;
 
+
+    //  note: doesn work in constructor
+    public Room Room
+    {
+        get { return RoomGenerator.Instance.GetRoomByRoomState(this); }
+    }
+
+    public int RoomIndex
+    {
+        get { return Room.RoomIndex; }
+    } 
+
+
     public RoomState()
     {
         FlowerState = FlowerState.Alive;
@@ -125,6 +138,22 @@ public class RoomState
             }
         }
 
+
+        int NextRoomIndex = this.RoomIndex + 1;
+        if (DateNightGameState.Instance.PipeFixedIndex == NextRoomIndex)
+        {
+            nextState._plumberCalled = false;
+            nextState._daysSincePlumberCalled = 0;
+            nextState.WaterPipeState = WaterPipeState.Fixed;
+        }
+
+        if(DateNightGameState.Instance.FlowerWateredIndex == NextRoomIndex)
+        {
+            nextState.FlowerState = FlowerState.Alive;
+            nextState._daysPlantHasBeenAlive = 0;
+            nextState._plantWatered = true;
+        }
+
         return nextState;
     }
 
@@ -135,6 +164,7 @@ public class RoomState
             FlowerState = FlowerState.Alive;
             _plantWatered = true;
             _daysPlantHasBeenAlive = 0;
+            DateNightGameState.Instance.FlowerWateredIndex = this.RoomIndex;
             // TODO: Play sound?
             this.StateChanged();
             return true;
@@ -156,7 +186,7 @@ public class RoomState
 
     public bool CallPlumber()
     {
-        if(WaterPipeState == WaterPipeState.PipeBroken)
+        if (WaterPipeState == WaterPipeState.PipeBroken)
         {
             if(!_plumberCalled)
             {
@@ -171,6 +201,7 @@ public class RoomState
             }
         }
 
+        this.StateChanged();
         return false;
     }
 
@@ -191,8 +222,9 @@ public class RoomState
         if(WaterPipeState == WaterPipeState.PipeBroken)
         {
             WaterPipeState = WaterPipeState.Fixed;
-            this.StateChanged();
             GuideText.Instance.SetText("You fixed the pipe");
+            DateNightGameState.Instance.PipeFixedIndex = this.RoomIndex;
+            this.StateChanged();
             return true;
         }
 

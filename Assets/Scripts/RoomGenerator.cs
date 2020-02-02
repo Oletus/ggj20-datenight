@@ -1,6 +1,7 @@
 ﻿using NaughtyAttributes;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class RoomGenerator : MonoBehaviour
 {
@@ -55,5 +56,11 @@ public class RoomGenerator : MonoBehaviour
     {
         var roomIndex = Rooms.IndexOf(room);
         return roomIndex >= 0 ? roomStates[roomIndex] : null;
+    }
+
+    public Room GetRoomByRoomState(RoomState roomState)
+    {
+        var roomIndex = new List<RoomState>(roomStates).IndexOf(roomState);
+        return roomIndex >= 0 ? Rooms[roomIndex] : null;
     }
 }
