@@ -10,6 +10,9 @@ public class Inventory : MonoBehaviour
 
     [SerializeField] private CameraEngine CameraSystem;
 
+    [SerializeField] private AudioSource Music;
+    [SerializeField] private AudioSource Fanfare;
+
     private int PickedFromRoomNumber = -1;
 
     private InteractableObject _CurrentPickedObject;
@@ -261,6 +264,14 @@ public class Inventory : MonoBehaviour
                 }
                 else
                 {
+                    if ( Fanfare != null )
+                    {
+                        Fanfare.Play();
+                    }
+                    if ( Music != null )
+                    {
+                        Music.Stop();
+                    }
                     FindObjectOfType<EndingUI>().GetEnding(3);
                 }
                 break;
