@@ -309,6 +309,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1396165070698624331}
     m_Modifications:
+    - target: {fileID: 3209832730316318846, guid: 7c4f778adea0a57419a3dd37938f756e,
+        type: 3}
+      propertyPath: WhiteFlash
+      value: 
+      objectReference: {fileID: 8648288023932717357}
     - target: {fileID: 7506822187737229346, guid: 7c4f778adea0a57419a3dd37938f756e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -569,3 +574,15 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 8765222582873690000}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8648288023932717357 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 117295198772217533, guid: f097605cfca0da845aaf49958556b5b7,
+    type: 3}
+  m_PrefabInstance: {fileID: 8765222582873690000}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
