@@ -236,7 +236,12 @@ public class RoomState
             nextState.WaterCanState = WaterCanState.Filled;
         }
 
-        
+        if (DateNightGameState.Instance.DogBallIndex == NextRoomIndex)
+        {
+            nextState.CouchState = CouchState.Ok;
+            nextState.DogState = DogState.Happy;
+        }
+
 
         return nextState;
     }
