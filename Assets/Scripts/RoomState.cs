@@ -240,6 +240,7 @@ public class RoomState
     {
         if ( FlowerState == FlowerState.Alive || FlowerState == FlowerState.Lack)
         {
+            Room.PlaySound("flower-water");
             FlowerState = FlowerState.Alive;
             _plantWatered = true;
             _daysPlantHasBeenAlive = 0;
@@ -269,6 +270,7 @@ public class RoomState
         {
             if(!_plumberCalled)
             {
+                Room.PlaySound("phone-dial");
                 _plumberCalled = true;
                 GuideText.Instance.SetText("\"Hello? Yes, this is plumber. You need to fix a leaking pipe? Okay, I will come in three days from  now\"");
                 this.StateChanged();
@@ -288,6 +290,7 @@ public class RoomState
     {
         if(WaterCanState == WaterCanState.FallenDown)
         {
+            Room.PlaySound("water-tap");
             WaterCanState = WaterCanState.Filled;
             this.StateChanged();
             return true;
@@ -300,6 +303,7 @@ public class RoomState
     {
         if(WaterPipeState == WaterPipeState.PipeBroken)
         {
+            Room.PlaySound("fix-pipe");
             WaterPipeState = WaterPipeState.Fixed;
             GuideText.Instance.SetText("You fixed the pipe");
             DateNightGameState.Instance.PipeFixedIndex = this.RoomIndex;
@@ -314,6 +318,7 @@ public class RoomState
     {
         if(WindowState == WindowState.Closed)
         {
+            Room.PlaySound("open-window");
             WindowState = WindowState.Open;
             DateNightGameState.Instance.WindowOpenedIndex = this.RoomIndex;
             this.StateChanged();
@@ -327,6 +332,7 @@ public class RoomState
     {
         if (DogState == DogState.Angry)
         {
+            Room.PlaySound("add-ball-dog");
             DogState = DogState.Happy;
             DateNightGameState.Instance.DogBallIndex = this.RoomIndex;
             this.StateChanged();
