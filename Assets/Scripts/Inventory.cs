@@ -240,6 +240,12 @@ public class Inventory : MonoBehaviour
                 break;
 
             case StatefulGameObjectId.Door:
+                if(roomState.RoomIndex < 3)
+                {
+                    GuideText.Instance.SetText("Your date is coming on another day");
+                    return false;
+                }
+
                 var todayRoomstate = RoomGenerator.Instance.GetRoomStateByRoomIndex(3);
                 if(todayRoomstate.FlowerState != FlowerState.Alive)
                 {
