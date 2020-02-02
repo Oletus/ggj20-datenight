@@ -14,6 +14,8 @@ public class CameraEngine : MonoBehaviour
 
     public int RoomNumber { get; private set; }
 
+    [SerializeField] private AudioSource TimeMachineSound;
+
     public void Awake()
     {
         if ( RoomCam.Length > 3 )
@@ -42,6 +44,7 @@ public class CameraEngine : MonoBehaviour
             {
                 WhiteFlash.canvasRenderer.SetAlpha(1.0f);
                 WhiteFlash.CrossFadeAlpha(0.0f, 0.2f, false);
+                TimeMachineSound.Play();
             }
         }
         Initialized = true;
